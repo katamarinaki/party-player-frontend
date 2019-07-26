@@ -1,17 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Tabs 
+      :activeIndex="activeIndex"
+      :tabs="tabs"
+      :toggleTab="toggleTab"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Tabs from './components/Tabs'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Tabs
+  },
+  data() {
+    return {
+      tabs: ['CREATE', 'OPEN'],
+      activeIndex: 0
+    }
+  },
+  methods: {
+    toggleTab(index) {
+      this.activeIndex = index
+    }
   }
 }
 </script>
