@@ -9,15 +9,19 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.7"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.4",
     "@vue/cli-plugin-eslint": "^3.0.4",
     "@vue/cli-service": "^3.0.4",
+    "axios": "^0.19.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-vue": "^5.2.3",
+    "prettier": "^1.18.2",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
@@ -29,10 +33,23 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error",
+      "no-console": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
   },
   "postcss": {
     "plugins": {
