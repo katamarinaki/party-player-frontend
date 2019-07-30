@@ -5,7 +5,7 @@
       type="text"
       name="room-id"
       id="room-id"
-      placeholder="room id" 
+      placeholder="room id"
       v-model="roomID"
     />
     <input

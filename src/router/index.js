@@ -4,6 +4,7 @@ import CreateRoom from '../components/CreateRoom'
 import OpenRoom from '../components/OpenRoom'
 import Home from '../components/Home'
 import Room from '../components/Room'
+import NotFound from '../components/NotFound'
 
 Vue.use(Router)
 
@@ -26,9 +27,14 @@ export default new Router({
       component: OpenRoom,
     },
     {
-      path: '/room/:id',
+      path: '/rooms/:id',
       name: 'room',
       component: Room,
+    },
+    {
+      path: '*',
+      name: 'notFound',
+      component: NotFound,
     },
   ],
 })
