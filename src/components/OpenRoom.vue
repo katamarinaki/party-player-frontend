@@ -33,7 +33,7 @@ export default {
       this.$http
         .get(`${process.env.VUE_APP_SERVER}/rooms/${this.roomID}`)
         .then(response => {
-          this.$router.push(`/room/${response.data.id}`)
+          this.$router.push(`/rooms/${response.data.id}`)
         })
         .catch(() => {
           alert('Error occured while trying open a room')

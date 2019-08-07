@@ -35,9 +35,9 @@ export default {
           name: this.roomName,
           password: this.roomPassword,
         })
-        .then(() => {
+        .then(result => {
           console.log('room created')
-          this.$router.push('/')
+          this.$router.push(`/rooms/${result.data.id}`)
         })
         .catch(() => {
           alert('Error occured while trying create a room')
