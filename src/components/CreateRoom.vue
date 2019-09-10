@@ -5,7 +5,7 @@
       type="text"
       name="room-name"
       id="room-name"
-      placeholder="room name"
+      placeholder="room name (optional)"
       v-model="roomName"
     />
     <input
@@ -15,8 +15,20 @@
       placeholder="room password (optional)"
       v-model="roomPassword"
     />
-    <input class="button" type="submit" value="Create" />
-    <router-link class="button" to="/" tag="button">Back to Menu</router-link>
+    <input
+      class="button"
+      type="submit"
+      value="Create"
+      :disabled="isButtonDisabled"
+    />
+    <router-link
+      class="button"
+      to="/"
+      tag="button"
+      :disabled="isButtonDisabled"
+    >
+      Back to Menu
+    </router-link>
   </form>
 </template>
 
@@ -26,31 +38,41 @@ export default {
     return {
       roomName: '',
       roomPassword: '',
+      isButtonDisabled: false,
     }
   },
   methods: {
     createRoom() {
+      this.isButtonDisabled = true
       this.$http
         .post(`/rooms/create`, {
           name: this.roomName,
           password: this.roomPassword,
         })
         .then(result => {
-          this.$store.commit("setToken",result.data.accessToken)
-          this.$http.get(`/rooms`).then(result=>{
-                  console.log(result)
-                  this.$store.commit("setRoom",result.data)
-                  console.log(this.$store)
-                  this.$router.push(`/rooms/${this.$store.getters.currentRoom.code}`)
-              }).catch((e) => {
-                console.log(e)
-                console.log('Error occured while trying to access room')
-            })
-
+          console.log(result.data.accessToken)
+          this.isButtonDisabled = false
+          this.$store.commit('setToken', result.data.accessToken)
+          this.$router.push(`/rooms/${result.data.roomCode}`)
+          // this.$http
+          //   .get(`/rooms`)
+          //   .then(result => {
+          //     console.log(result)
+          //     this.$store.commit('setRoom', result.data)
+          //     console.log(this.$store)
+          //     this.$router.push(
+          //       `/rooms/${this.$store.getters.currentRoom.code}`
+          //     )
+          //   })
+          //   .catch(e => {
+          //     console.log(e)
+          //     console.log('Error occured while trying to access room')
+          //   })
         })
-        .catch((e) => {
+        .catch(e => {
+          this.isButtonDisabled = false
           console.log(e)
-          console.log('Error occured while trying create a room')
+          console.log('Error occured while trying create a room' + e)
         })
     },
   },

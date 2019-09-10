@@ -29,6 +29,18 @@ export default {
   //   next()
   // },
   created() {
+    this.$http
+      .get(`/rooms`)
+      .then(result => {
+        console.log(result)
+        this.$store.commit('setRoom', result.data)
+        console.log(this.$store)
+        this.$router.push(`/rooms/${this.$store.getters.currentRoom.code}`)
+      })
+      .catch(e => {
+        console.log(e.message)
+        console.log('Error occured while trying to access room' + e)
+      })
     // this.$http
     //   .get(`${process.env.VUE_APP_SERVER}/rooms/${this.$route.params.id}`)
     //   .then(result => {

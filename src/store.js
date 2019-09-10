@@ -7,10 +7,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     token: '',
-    room: {},
+    room: {
+      users: [],
+    },
   },
   mutations: {
     setToken(state, newToken) {
+      localStorage.setItem('authtoken', newToken)
       axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`
       state.token = newToken
     },
