@@ -31,16 +31,26 @@ export default {
   methods: {
     createRoom() {
       this.$http
-        .post(`${process.env.VUE_APP_SERVER}/rooms`, {
+        .post(`/rooms/create`, {
           name: this.roomName,
           password: this.roomPassword,
         })
         .then(result => {
-          console.log('room created')
-          this.$router.push(`/rooms/${result.data.id}`)
+          this.$store.commit("setToken",result.data.accessToken)
+          this.$http.get(`/rooms`).then(result=>{
+                  console.log(result)
+                  this.$store.commit("setRoom",result.data)
+                  console.log(this.$store)
+                  this.$router.push(`/rooms/${this.$store.getters.currentRoom.code}`)
+              }).catch((e) => {
+                console.log(e)
+                console.log('Error occured while trying to access room')
+            })
+
         })
-        .catch(() => {
-          alert('Error occured while trying create a room')
+        .catch((e) => {
+          console.log(e)
+          console.log('Error occured while trying create a room')
         })
     },
   },

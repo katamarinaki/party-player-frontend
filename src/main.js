@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
-import axios from 'axios'
+import axios from './networking'
 import router from './router'
 import VueYoutube from 'vue-youtube'
+import store from './store'
 
 Vue.use(VueYoutube)
 
@@ -12,5 +13,6 @@ Vue.prototype.$http = axios
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
