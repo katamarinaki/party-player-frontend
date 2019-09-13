@@ -1,10 +1,6 @@
 <template>
   <div class="header">
-    <div
-      v-if="backActionNeeded"
-      class="action-left"
-      @click="this.$router.back(-1)"
-    >
+    <div v-if="backActionNeeded" class="action-left" @click="$router.back(-1)">
       ⬅️
     </div>
     <p>{{ title }}</p>
