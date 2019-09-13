@@ -19,7 +19,6 @@ export default {
   methods: {
     onSearch(results) {
       this.searchResults = results
-      console.log(this.searchResults)
     },
   },
   created() {

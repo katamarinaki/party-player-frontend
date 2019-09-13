@@ -6,6 +6,7 @@
       :fitParent="true"
       :resize="true"
       :resizeDelay="0"
+      @ended="playNext"
       ref="youtube"
     />
   </div>
@@ -23,6 +24,35 @@ export default {
       videoID: '',
     }
   },
+  watch:{
+    isNothingToPlay(newState){
+      if(!this.isNothingToPlay && this.videoID==="")
+        this.playNext()
+    }
+  },
+  methods:{
+     playNext(){
+       if(this.isNothingToPlay){
+         this.videoID=""
+         return;
+      }
+      this.$store.commit("nextTrack")
+      let newTrack = this.$store.getters.currentPlayingTrack
+      this.videoID = newTrack.id
+      this.$refs.youtube.player.playVideo()
+     }
+  },
+  computed:{
+     isNothingToPlay(){
+       return this.$store.getters.isPlayListEmpty
+     },
+     
+     player(){
+       return this.$refs.youtube.player
+     }
+     
+  }
+  
 }
 </script>
 

@@ -2,7 +2,7 @@
   <div class="search-results">
     <div v-if="!searchlist.length" class="result no-results">No resluts</div>
     <div v-else v-for="(result, index) in searchlist" :key="index">
-      <TrackResult :track="result" />
+      <TrackResult :track="result" @addtrack="addToList" />
     </div>
   </div>
 </template>
@@ -22,8 +22,9 @@ export default {
     },
   },
   methods: {
-    // addToList(index) {
-    // }
+     addToList(track) {
+       this.$store.commit("pushToPlaylist",track);
+     }
   },
 }
 </script>
