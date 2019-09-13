@@ -1,86 +1,68 @@
 <template>
   <div class="room">
-    <div class="room-header">
-      <h3>ROOM №{{ $route.params.id }}</h3>
-    </div>
-    <div class="room-content">
-      <div class="video-player">
-        <youtube
-          :video-id="videoID"
-          :fitParent="true"
-          :resize="true"
-          :playerVars="playerVars"
-          ref="youtube"
-        />
-      </div>
-      <Playlist :onClickTrack="playVideo" />
-    </div>
+    <RoomHeader :name="room.name" />
+    <RoomPlayer />
+    <router-link class="addtrack-button" to="search" tag="button" append>
+      Add Track
+    </router-link>
+    <RoomPlaylist :playlist="room.playlist" />
   </div>
 </template>
 
 <script>
-import Playlist from './Playlist'
+import RoomHeader from './RoomHeader'
+import RoomPlayer from './RoomPlayer'
+import RoomPlaylist from './RoomPlaylist'
 export default {
   components: {
-    Playlist,
+    RoomHeader,
+    RoomPlayer,
+    RoomPlaylist,
   },
-  // beforeRouteUpdate(to, from, next) {
-  //   console.log('beforerouterupdate')
-  //   next()
-  // },
   created() {
-    
-    this.$http
-      .get(`/rooms`)
-      .then(result => {
-        console.log(result)
-        this.$store.commit('setRoom', result.data)
-        console.log(this.$store)
-        this.$router.push(`/rooms/${this.$store.getters.currentRoom.code}`)
-      })
-      .catch(e => {
-        console.log(e.message)
-        console.log('Error occured while trying to access room' + e)
-      })
+    if (this.code && this.code === this.$route.params.code) {
+      this.getRoomFromServer()
+    } else {
+      this.$http
+        .post('/rooms/join', {
+          code: this.$route.params.code,
+          password: '',
+        })
+        .then(result => {
+          this.$store.commit('setToken', result.data.accessToken)
+          this.getRoomFromServer()
+        })
+        .catch(err => {
+          console.log(err.response)
+          this.$router.push('/join') // прокинуть проп
+        })
+    }
   },
   computed: {
-    player() {
-      return this.$refs.youtube.player
+    room() {
+      return this.$store.getters.currentRoom
+    },
+    code() {
+      return localStorage.getItem('roomcode')
     },
   },
   data() {
-    return {
-      playerVars: {
-        autoplay: 1,
-        controls: 1,
-        origin: 'http://localhost:8080',
-      },
-      videos: [],
-      videoID: '',
-      searchString: '',
-      reformattedSearchString: '',
-      api: {
-        baseUrl: 'https://www.googleapis.com/youtube/v3/search?',
-        part: 'snippet',
-        type: 'video',
-        order: 'viewCount',
-        maxResults: 12,
-        q: '',
-        key: process.env.VUE_APP_YT_API_KEY,
-        prevPageToken: '',
-        nextPageToken: '',
-      },
-    }
+    return {}
   },
   methods: {
-    playVideo(id) {
-      this.videoID = id
-      this.player.playVideo()
+    openSearch() {
+      this.$router.push({ path: '/search', append: true })
     },
-    initRoom() {
-      // console.log(roomData)
-      // this.search(['gachimuchi', 'remix'])
-      // console.log(this.videos)
+    getRoomFromServer() {
+      this.$http
+        .get(`/rooms`)
+        .then(result => {
+          this.$store.commit('setRoom', result.data)
+        })
+        .catch(e => {
+          console.log(e.response)
+          console.log('Error occured while trying to access room' + e)
+        })
     },
   },
 }
@@ -88,16 +70,15 @@ export default {
 
 <style scoped>
 .room {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-}
-.room-content {
-  display: flex;
-  flex-direction: row;
+  justify-content: flex-start;
 }
 
-.video-player {
-  width: 500px;
-  margin-right: 50px;
+.addtrack-button {
+  height: 30px;
+  font-size: 16px;
 }
 </style>

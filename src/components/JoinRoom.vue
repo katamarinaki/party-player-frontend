@@ -1,24 +1,24 @@
 <template>
-  <form class="create-room" @submit.prevent="createRoom">
-    <h3>CREATE ROOM</h3>
+  <form class="join-room" @submit.prevent="joinRoom">
+    <h3>JOIN ROOM</h3>
     <input
       type="text"
-      name="room-name"
-      id="room-name"
-      placeholder="room name (optional)"
-      v-model="roomName"
+      name="room-code"
+      id="room-code"
+      placeholder="room code"
+      v-model="roomCode"
     />
     <input
       type="password"
       name="room-password"
       id="room-password"
-      placeholder="room password (optional)"
+      placeholder="room password"
       v-model="roomPassword"
     />
     <input
       class="button"
       type="submit"
-      value="Create"
+      value="Join"
       :disabled="isButtonsDisabled"
     />
     <router-link
@@ -36,17 +36,17 @@
 export default {
   data() {
     return {
-      roomName: '',
+      roomCode: '',
       roomPassword: '',
       isButtonsDisabled: false,
     }
   },
   methods: {
-    createRoom() {
+    joinRoom() {
       this.isButtonsDisabled = true
       this.$http
-        .post(`/rooms/create`, {
-          name: this.roomName,
+        .post(`/rooms/join`, {
+          code: this.roomCode,
           password: this.roomPassword,
         })
         .then(result => {
@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style scoped>
-.create-room {
+.join-room {
   box-sizing: border-box;
   padding: 10px;
   border: 1px solid black;
@@ -75,7 +75,7 @@ export default {
   align-items: center;
 }
 
-.create-room > input {
+.join-room > input {
   width: 200px;
   margin-bottom: 20px;
 }

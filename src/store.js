@@ -6,10 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token: '',
-    room: {
-      users: [],
-    },
+    token: null,
+    room: {},
   },
   mutations: {
     setToken(state, newToken) {
@@ -29,7 +27,6 @@ export default new Vuex.Store({
     currentRoom(state) {
       return {
         ...state.room,
-        users: [...state.room.users],
       }
     },
     currentToken(state) {
