@@ -1,6 +1,6 @@
 <template>
   <div class="search-component">
-    <RoomHeader :title="`Search`" :leftActionNeeded="true" />
+    <RoomHeader :title="`Search`" :backActionNeeded="true" />
     <SearchInput @newsearch="onSearch" />
     <SearchResults class="results" :results="searchResults" />
   </div>

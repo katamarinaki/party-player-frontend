@@ -1,6 +1,10 @@
 <template>
   <div class="header">
-    <div v-if="leftActionNeeded" class="action-left" @click="actionLeft">
+    <div
+      v-if="backActionNeeded"
+      class="action-left"
+      @click="this.$router.back(-1)"
+    >
       ⬅️
     </div>
     <p>{{ title }}</p>
@@ -11,14 +15,9 @@
 export default {
   props: {
     title: String,
-    leftActionNeeded: {
+    backActionNeeded: {
       type: Boolean,
       default: false,
-    },
-  },
-  methods: {
-    actionLeft() {
-      this.$router.back(-1)
     },
   },
 }
