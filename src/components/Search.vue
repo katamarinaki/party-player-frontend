@@ -1,8 +1,8 @@
 <template>
   <div class="search-component">
-    <RoomHeader :name="room.name" />
+    <RoomHeader :title="`Search`" :backActionNeeded="true" />
     <SearchInput @newsearch="onSearch" />
-    <SearchResults :searchlist="searchResults" />
+    <SearchResults class="results" :results="searchResults" />
   </div>
 </template>
 
@@ -25,11 +25,9 @@ export default {
     if (!this.code || this.code !== this.$route.params.code) {
       this.$router.push('/join') // прокинуть проп
     }
+    console.log(this.room)
   },
   computed: {
-    room() {
-      return this.$store.getters.currentRoom
-    },
     code() {
       return localStorage.getItem('roomcode')
     },
@@ -49,5 +47,10 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+.header,
+.search-controls,
+.search-results {
+  flex-shrink: 0;
 }
 </style>

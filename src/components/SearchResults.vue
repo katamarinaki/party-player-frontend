@@ -14,7 +14,7 @@ export default {
     TrackResult,
   },
   props: {
-    searchlist: {
+    results: {
       type: Array,
       default: () => {
         return []
@@ -33,5 +33,9 @@ export default {
 .search-results {
   padding: 10px;
   overflow-y: scroll;
+}
+.no-results {
+  overflow-y: hidden;
+  text-align: center;
 }
 </style>
