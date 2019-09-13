@@ -2,8 +2,8 @@
   <div class="home">
     <h3>PARTY PLAYER</h3>
     <div class="content">
-      <router-link class="button" to="/open" tag="button">
-        Open Room
+      <router-link class="button" to="/join" tag="button">
+        Join Room
       </router-link>
       <router-link class="button" to="/create" tag="button">
         Create Room
