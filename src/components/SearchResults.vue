@@ -1,7 +1,7 @@
 <template>
   <div class="search-results">
-    <div v-if="!searchlist.length" class="result no-results">No resluts</div>
-    <div v-else v-for="(result, index) in searchlist" :key="index">
+    <div v-if="!results.length" class="no-results">No results</div>
+    <div v-else v-for="(result, index) in results" :key="index">
       <TrackResult :track="result" />
     </div>
   </div>
@@ -14,16 +14,12 @@ export default {
     TrackResult,
   },
   props: {
-    searchlist: {
+    results: {
       type: Array,
       default: () => {
         return []
       },
     },
-  },
-  methods: {
-    // addToList(index) {
-    // }
   },
 }
 </script>
@@ -32,5 +28,9 @@ export default {
 .search-results {
   padding: 10px;
   overflow-y: scroll;
+}
+.no-results {
+  overflow-y: hidden;
+  text-align: center;
 }
 </style>

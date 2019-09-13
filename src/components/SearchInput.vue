@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div class="search-controls">
     <input
       class="search-input"
       type="text"
@@ -21,6 +21,7 @@
 <script>
 import axios from 'axios'
 export default {
+  name: 'SearchControl',
   data() {
     return {
       searchString: '',
@@ -40,7 +41,6 @@ export default {
   },
   methods: {
     search() {
-      console.log(process.env.VUE_APP_YT_API_KEY)
       this.results = []
       const searchArray = this.searchString.split(' ')
       this.api.q = searchArray.join('+')
@@ -57,10 +57,9 @@ export default {
               thumbnailSrc: videoObj.snippet.thumbnails.default.url,
             })
           })
-          console.log(res.data.items)
           this.$emit('newsearch', this.results)
-          this.api.prevPageToken = res.data.prevPageToken
-          this.api.nextPageToken = res.data.nextPageToken
+          // this.api.prevPageToken = res.data.prevPageToken
+          // this.api.nextPageToken = res.data.nextPageToken
         })
         .catch(error => console.log(error.response))
     },
@@ -69,15 +68,15 @@ export default {
 </script>
 
 <style scoped>
-.search {
+.search-controls {
   margin: 10px;
   display: flex;
-  height: 2em;
+  height: 3em;
 }
 .search-input {
-  box-sizing: border-box;
+  padding: 5px;
   font-size: 20px;
-  width: 80%;
+  width: 100%;
 }
 .search-button {
   margin-left: 5px;
