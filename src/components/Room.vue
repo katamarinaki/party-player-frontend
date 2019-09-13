@@ -29,6 +29,7 @@ export default {
   //   next()
   // },
   created() {
+    
     this.$http
       .get(`/rooms`)
       .then(result => {
@@ -41,16 +42,6 @@ export default {
         console.log(e.message)
         console.log('Error occured while trying to access room' + e)
       })
-    // this.$http
-    //   .get(`${process.env.VUE_APP_SERVER}/rooms/${this.$route.params.id}`)
-    //   .then(result => {
-    //     this.initRoom(null)
-    //   })
-    //   .catch(err => {
-    //     if (err.response && err.response.status) {
-    //       this.$router.push('/404')
-    //     }
-    //   })
   },
   computed: {
     player() {
