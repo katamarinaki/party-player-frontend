@@ -1,14 +1,14 @@
 <template>
   <div class="test">
-    <TrackResult />
+    <RoomPlaylist />
   </div>
 </template>
 
 <script>
-import TrackResult from './TrackResult'
+import RoomPlaylist from './RoomPlaylist'
 export default {
   components: {
-    TrackResult,
+    RoomPlaylist,
   },
 }
 </script>
