@@ -21,9 +21,6 @@
           <i>👍</i>
         </div>
       </template>
-      <template v-slot:empty>
-        <div>list is empty ( filtered or just empty )</div>
-      </template>
     </swipe-list>
   </div>
 </template>
