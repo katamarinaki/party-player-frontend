@@ -1,9 +1,9 @@
 <template>
   <div class="header">
     <div v-if="backActionNeeded" class="action-left" @click="$router.back(-1)">
-      ⬅️
+      <p>&lt;</p>
     </div>
-    <p>{{ title }}</p>
+    <p class="title">{{ title }}</p>
   </div>
 </template>
 
@@ -23,21 +23,25 @@ export default {
 .header {
   position: relative;
   height: 80px;
-  background-color: gray;
+  padding: 24px 0;
+  border-bottom: 2px solid black;
 }
-.header > p {
+.title {
+  margin: 0;
   font-size: 24px;
   text-align: center;
-  color: white;
 }
 .action-left {
-  padding-top: 10px;
+  padding-left: 10px;
   cursor: pointer;
-  color: white;
   height: 100%;
   width: 80px;
-  font-size: 32px;
+  font-size: 48px;
   position: absolute;
   left: 0;
+  top: 0;
+}
+.action-left > p {
+  margin: 12px 0;
 }
 </style>

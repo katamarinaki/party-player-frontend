@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <h3>PARTY PLAYER</h3>
-    <div class="content">
-      <router-link class="button" to="/join" tag="button">
-        Join Room
-      </router-link>
+    <p class="header">PARTY PLAYER</p>
+    <div class="buttons">
       <router-link class="button" to="/create" tag="button">
-        Create Room
+        Create a room
+      </router-link>
+      <router-link class="button" to="/join" tag="button">
+        Connect to room
       </router-link>
     </div>
   </div>
@@ -20,11 +20,13 @@ export default {
 
 <style scoped>
 .home {
-  border: 1px solid black;
-  border-radius: 10px;
+  color: black;
+  width: 100%;
+  height: 100%;
 }
 h3 {
-  text-align: center;
+  font-weight: bold;
+  margin: 0;
 }
 .content {
   width: 300px;
@@ -33,5 +35,26 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.header {
+  font-size: 38px;
+  font-weight: bolder;
+  margin: 40px 35px;
+  text-align: center;
+}
+.buttons {
+  margin: 50px 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.button:nth-child(2) {
+  margin-top: 24px;
+}
+.button {
+  background-color: #d8d8d8;
+  font-size: 32px;
+  width: 320px;
+  height: 140px;
 }
 </style>
