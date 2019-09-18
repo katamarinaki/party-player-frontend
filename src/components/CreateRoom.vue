@@ -52,13 +52,17 @@ export default {
         })
         .then(result => {
           this.isButtonDisabled = false
-          this.$store.commit('setToken', result.data.accessToken)
+          //this.$store.commit('setToken', result.data.accessToken)
+          localStorage.setItem('authtoken', result.data.accessToken)
           localStorage.setItem('roomcode', result.data.roomCode)
+          this.$http.defaults.headers[
+            'Authorization'
+          ] = `Bearer ${result.data.accessToken}`
           this.$router.push(`/rooms/${result.data.roomCode}`)
         })
         .catch(e => {
           this.isButtonDisabled = false
-          console.log('Error occured while trying create a room' + e)
+          console.log('Error occured while trying create a room', e)
         })
     },
   },

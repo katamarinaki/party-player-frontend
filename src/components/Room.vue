@@ -1,8 +1,12 @@
 <template>
   <div class="room">
-    <RoomHeader :name="room.name" />
-    <RoomPlayer />
-    <router-link class="addtrack-button" to="search" tag="button" append>
+    <HeaderInRoom
+      :title="room.name"
+      :code="room.code"
+      :users="room.users.length"
+    />
+    <RoomPlayer v-if="isAdmin" />
+    <router-link class="button" to="search" tag="button" append>
       Add Track
     </router-link>
     <RoomPlaylist :playlist="room.playlist" />
@@ -10,26 +14,31 @@
 </template>
 
 <script>
-import RoomHeader from './RoomHeader'
+import HeaderInRoom from './HeaderInRoom'
 import RoomPlayer from './RoomPlayer'
 import RoomPlaylist from './RoomPlaylist'
 export default {
   components: {
-    RoomHeader,
+    HeaderInRoom,
     RoomPlayer,
     RoomPlaylist,
   },
   created() {
     if (this.code && this.code === this.$route.params.code) {
       this.getRoomFromServer()
-    } else {  
+    } else {
       this.$http
         .post('/rooms/join', {
           code: this.$route.params.code,
           password: '',
         })
         .then(result => {
-          this.$store.commit('setToken', result.data.accessToken)
+          //this.$store.commit('setToken', result.data.accessToken)
+          localStorage.setItem('authtoken', result.data.accessToken)
+          localStorage.setItem('roomcode', result.data.roomCode)
+          this.$http.defaults.headers[
+            'Authorization'
+          ] = `Bearer ${result.data.accessToken}`
           this.getRoomFromServer()
         })
         .catch(err => {
@@ -47,7 +56,9 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      isAdmin: true,
+    }
   },
   methods: {
     openSearch() {
@@ -60,8 +71,7 @@ export default {
           this.$store.commit('setRoom', result.data)
         })
         .catch(e => {
-          console.log(e.response)
-          console.log('Error occured while trying to access room' + e)
+          console.log('Error occured while trying to access room', e)
         })
     },
   },
@@ -75,6 +85,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .addtrack-button {
