@@ -11,7 +11,7 @@
       class="add-button"
       type="button"
       value="+"
-      @click="$emit('addtrack', track.id)"
+      @click="$emit('addtrack', track)"
     />
   </div>
 </template>

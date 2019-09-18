@@ -45,6 +45,7 @@ export default {
       const searchArray = this.searchString.split(' ')
       this.api.q = searchArray.join('+')
       const { baseUrl, part, type, order, maxResults, q, key } = this.api
+      const searchCategory = '&videoCategoryId=10'
       const apiUrl = `${baseUrl}part=${part}&type=${type}&order=${order}&q=${q}&maxResults=${maxResults}&key=${key}`
       axios
         .get(apiUrl)
