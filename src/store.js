@@ -1,12 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from './networking'
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token: null,
     room: {
       users: [],
     },
@@ -14,16 +11,17 @@ export default new Vuex.Store({
     playingTrack: {},
   },
   mutations: {
-    setToken(state, newToken) {
-      localStorage.setItem('authtoken', newToken)
-      axios.defaults.headers['Authorization'] = `Bearer ${newToken}`
-      state.token = newToken
-    },
     setRoom(state, newRoom) {
       state.room = {
         ...newRoom,
         users: [...newRoom.users],
       }
+    },
+    setPlaylist(state, newPlaylist) {
+      state.playlist = newPlaylist.map(item => {
+        return { ...item }
+      })
+      console.log(state.playlist)
     },
     pushToPlaylist(state, track) {
       state.playlist.push({ ...track })

@@ -1,6 +1,7 @@
 <template>
   <div class="player">
     <youtube
+      class="player-iframe"
       :video-id="videoID"
       :playerVars="playerVars"
       :fitParent="true"
@@ -82,6 +83,9 @@ export default {
 
 <style scoped>
 .player {
-  width: 100px;
+  width: 100%;
+}
+.player-iframe {
+  width: 100%;
 }
 </style>

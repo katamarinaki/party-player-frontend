@@ -22,9 +22,17 @@ export default {
     },
   },
   methods: {
-     addToList(track) {
-       this.$store.commit("pushToPlaylist",track);
-     }
+    addToList(track) {
+      this.$http
+        .post('/tracks/add', track)
+        .then(result => {
+          console.log(result)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      //this.$store.commit('pushToPlaylist', track)
+    },
   },
 }
 </script>

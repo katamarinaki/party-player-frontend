@@ -7,8 +7,8 @@
       <p class="track-name">{{ track.title }}</p>
       <p class="track-channel">{{ track.channelTitle }}</p>
       <p class="track-metrics">
-        <span class="dislikes">👎 100</span>
-        <span class="likes">👍 200</span>
+        <span class="dislikes">👎 {{ dislikes }}</span>
+        <span class="likes">👍 {{ likes }}</span>
       </p>
     </div>
   </div>
@@ -26,6 +26,8 @@ export default {
           channelTitle: 'Алексей Пивоваров',
           thumbnailSrc:
             'https://sun9-43.userapi.com/c854028/v854028637/dd6f6/Xr4q52zuGCs.jpg',
+          likes: 0,
+          dislikes: 0,
         }
       },
     },
