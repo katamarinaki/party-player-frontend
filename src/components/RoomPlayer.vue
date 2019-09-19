@@ -6,13 +6,17 @@
       :playerVars="playerVars"
       :fitParent="true"
       :resize="true"
-      @ended="playNext"
+      :resizeDelay="0"
+      @ended="playerEnded"
+      @ready="playerReady"
       ref="youtube"
     />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -20,36 +24,60 @@ export default {
         autoplay: 1,
         controls: 1,
         origin: 'http://localhost:8080',
+        host: 'http://www.youtube.com',
       },
       videoID: '',
+      isPlayerReady: false,
     }
   },
-  watch: {
-    isNothingToPlay(newState) {
-      if (!this.isNothingToPlay && this.videoID === '') this.playNext()
-    },
+  watch:{
+
   },
-  methods: {
-    playNext() {
-      if (this.isNothingToPlay) {
-        this.videoID = ''
-        return
-      }
-      this.$store.commit('nextTrack')
-      let newTrack = this.$store.getters.currentPlayingTrack
-      this.videoID = newTrack.id
-      this.$refs.youtube.player.playVideo()
-    },
+  mounted(){
   },
-  computed: {
-    isNothingToPlay() {
-      return this.$store.getters.isPlayListEmpty
+
+  methods:{
+
+
+    playerEnded(){
+      this.$store.commit("nextTrack");
     },
 
-    player() {
-      return this.$refs.youtube.player
+    currentTrackChanged(newVideo,oldVideo){
+      if(newVideo){
+          if( !oldVideo || oldVideo.id != newVideo.id){
+            this.videoID = newVideo.id
+            this.player.playVideo()
+          }
+      }
+      else{
+        this.player.stopVideo()
+        this.videoID=''
+      }
     },
+
+
+
+    // callback for when player is ready, we set up watchers for updated state
+    playerReady(){
+      this.isPlayerReady = true
+      //this.$watch("nextVideo",this.nextVideoChanged,{immediate:true})
+      this.$watch("currentPlayingTrack",this.currentTrackChanged,{immediate:true})
+    }
   },
+  computed:{
+
+     ...mapGetters(["currentPlayingTrack","currentPlaylist"]),
+
+
+
+     // player api instance, only legit after playerReady fired
+     player() {
+       return this.$refs.youtube.player;
+     }
+
+  }
+
 }
 </script>
 

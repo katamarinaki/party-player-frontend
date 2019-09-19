@@ -67,7 +67,10 @@ export default {
         .get(`/rooms`)
         .then(result => {
           this.$store.commit('setRoom', result.data)
-          this.$store.commit('setPlaylist', result.data.playlist)
+          console.log(result.data)
+          this.$store.commit('setCurrentTrack',result.data.playlist.tracks[0])
+          this.$store.commit('setPlaylist', result.data.playlist.tracks.slice(1))
+          console.log(this.currentPlaylist)
         })
         .catch(e => {
           console.log('Error occured while trying to access room', e)
