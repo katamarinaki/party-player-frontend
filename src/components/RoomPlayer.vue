@@ -34,43 +34,34 @@ export default {
   },
   mounted(){
   },
+
   methods:{
-     //pops  next track out of playlist
-     //plays if it exists
-     playNext(){
-      this.$store.commit("nextTrack")
-    },
-
-    async playVideo() {
-       await this.player.playVideo()
-    },
-
-    async cueNext(){
-       await this.player.cueVideoById()
-    },
-
-    nextVideoChanged(newVideo,oldVideo){
-      if(newVideo){
-        if(!oldVideo || oldVideo.id!=newVideo.id)
-          this.player.cueVideoById(newVideo.id)
-      }
-      else{
-        this.player.cueVideoById("");
-      }
-    },
-
 
 
     playerEnded(){
-      this.player.playVideo().then(()=>this.$store.commit("nextTrack"));
+      this.$store.commit("nextTrack");
     },
+
+    currentTrackChanged(newVideo,oldVideo){
+      if(newVideo){
+          if( !oldVideo || oldVideo.id != newVideo.id){
+            this.videoID = newVideo.id
+            this.player.playVideo()
+          }
+      }
+      else{
+        this.player.stopVideo()
+        this.videoID=''
+      }
+    },
+
 
 
     // callback for when player is ready, we set up watchers for updated state
     playerReady(){
       this.isPlayerReady = true
-      this.$watch("nextVideo",this.nextVideoChanged,{immediate:true})
-      //this.$watch("currentPlayingTrack",this.currentTrackChanged,{immediate:true})
+      //this.$watch("nextVideo",this.nextVideoChanged,{immediate:true})
+      this.$watch("currentPlayingTrack",this.currentTrackChanged,{immediate:true})
     }
   },
   computed:{
@@ -78,10 +69,6 @@ export default {
      ...mapGetters(["currentPlayingTrack","currentPlaylist"]),
 
 
-
-     nextVideo(){
-       this.currentPlaylist.length ? this.currentPlaylist[0] : null
-     },
 
      // player api instance, only legit after playerReady fired
      player() {
