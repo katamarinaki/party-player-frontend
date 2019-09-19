@@ -1,15 +1,15 @@
 <template>
   <div class="room">
     <HeaderInRoom
-      :title="room.name"
-      :code="room.code"
-      :users="room.users.length"
+      :title="currentRoom.name"
+      :code="currentRoom.code"
+      :users="currentRoom.users.length"
     />
     <RoomPlayer v-if="isAdmin" />
     <router-link class="button" to="search" tag="button" append>
       Add Track
     </router-link>
-    <RoomPlaylist :playlist="room.playlist" />
+    <RoomPlaylist :playlist="currentPlaylist" />
   </div>
 </template>
 
@@ -17,6 +17,7 @@
 import HeaderInRoom from './HeaderInRoom'
 import RoomPlayer from './RoomPlayer'
 import RoomPlaylist from './RoomPlaylist'
+import { mapGetters } from 'vuex'
 export default {
   components: {
     HeaderInRoom,
@@ -33,7 +34,6 @@ export default {
           password: '',
         })
         .then(result => {
-          //this.$store.commit('setToken', result.data.accessToken)
           localStorage.setItem('authtoken', result.data.accessToken)
           localStorage.setItem('roomcode', result.data.roomCode)
           this.$http.defaults.headers[
@@ -48,9 +48,7 @@ export default {
     }
   },
   computed: {
-    room() {
-      return this.$store.getters.currentRoom
-    },
+    ...mapGetters(['currentRoom', 'currentPlayingTrack', 'currentPlaylist']),
     code() {
       return localStorage.getItem('roomcode')
     },
@@ -69,6 +67,9 @@ export default {
         .get(`/rooms`)
         .then(result => {
           this.$store.commit('setRoom', result.data)
+          console.log(result.data)
+          this.$store.commit('setPlaylist', result.data.playlist.tracks)
+          console.log(this.currentPlaylist)
         })
         .catch(e => {
           console.log('Error occured while trying to access room', e)
@@ -88,8 +89,7 @@ export default {
   align-items: center;
 }
 
-.addtrack-button {
-  height: 30px;
-  font-size: 16px;
+.button {
+  margin-top: 20px;
 }
 </style>

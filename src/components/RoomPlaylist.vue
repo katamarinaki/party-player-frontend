@@ -1,15 +1,15 @@
 <template>
   <div class="playlist">
-    <div class="playlist-empty" v-if="!playlist.tracks.length">No Tracks</div>
+    <div class="playlist-empty" v-if="!playlist.length">No Tracks</div>
     <swipe-list
       v-else
       ref="playlist"
-      :items="playlist.tracks"
+      :items="playlist"
       @active="closeAll"
       @swipeout:click="closeAll"
     >
       <template v-slot="{ item }">
-        <TrackInRoom @click="close(index)" />
+        <TrackInRoom :track="item" @click="close(index)" />
       </template>
       <template v-slot:left="{ index }">
         <div class="dislike" @click="$emit('like', index)">
@@ -39,9 +39,9 @@ export default {
   },
   props: {
     playlist: {
-      type: Object,
+      type: Array,
       default: () => {
-        return { tracks: [] }
+        return []
       },
     },
   },
@@ -61,6 +61,9 @@ export default {
     closeAll() {
       this.$refs.playlist.closeActions()
     },
+  },
+  mounted() {
+    console.log(this.playlist)
   },
 }
 </script>
