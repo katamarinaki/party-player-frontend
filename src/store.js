@@ -4,9 +4,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    room: {
-      users: [],
-    },
+    room: {},
     playlist: [],
     playingTrack: {},
   },
@@ -14,14 +12,12 @@ export default new Vuex.Store({
     setRoom(state, newRoom) {
       state.room = {
         ...newRoom,
-        users: [...newRoom.users],
       }
     },
     setPlaylist(state, newPlaylist) {
       state.playlist = newPlaylist.map(item => {
         return { ...item }
       })
-      console.log(state.playlist)
     },
     pushToPlaylist(state, track) {
       state.playlist.push({ ...track })

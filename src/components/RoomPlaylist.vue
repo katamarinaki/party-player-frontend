@@ -1,27 +1,29 @@
 <template>
   <div class="playlist">
-    <div class="playlist-empty" v-if="!playlist.length">No Tracks</div>
-    <swipe-list
-      v-else
-      ref="playlist"
-      :items="playlist"
-      @active="closeAll"
-      @swipeout:click="closeAll"
-    >
-      <template v-slot="{ item }">
-        <TrackInRoom :track="item" @click="close(index)" />
-      </template>
-      <template v-slot:left="{ index }">
-        <div class="dislike" @click="$emit('like', index)">
-          <i>👎</i>
-        </div>
-      </template>
-      <template v-slot:right="{ index }">
-        <div class="like" @click="$emit('dislike', index)">
-          <i>👍</i>
-        </div>
-      </template>
-    </swipe-list>
+    <div class="playlist-empty" v-if="!currentPlaylist.length">No Tracks</div>
+    <template v-else>
+      <TrackInRoom :track="currentPlayingTrack" />
+      <swipe-list
+        ref="playlist"
+        :items="currentPlaylist"
+        @active="closeAll"
+        @swipeout:click="closeAll"
+      >
+        <template v-slot="{ item }">
+          <TrackInRoom :track="item" @click="close(index)" />
+        </template>
+        <template v-slot:left="{ index }">
+          <div class="dislike" @click="$emit('like', index)">
+            <i>👎</i>
+          </div>
+        </template>
+        <template v-slot:right="{ index }">
+          <div class="like" @click="$emit('dislike', index)">
+            <i>👍</i>
+          </div>
+        </template>
+      </swipe-list>
+    </template>
   </div>
 </template>
 
@@ -30,20 +32,13 @@
 import { SwipeList, SwipeOut } from 'vue-swipe-actions'
 import 'vue-swipe-actions/dist/vue-swipe-actions.css'
 import TrackInRoom from './TrackInRoom'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
     SwipeOut,
     SwipeList,
     TrackInRoom,
-  },
-  props: {
-    playlist: {
-      type: Array,
-      default: () => {
-        return []
-      },
-    },
   },
   methods: {
     close(item) {
@@ -62,8 +57,8 @@ export default {
       this.$refs.playlist.closeActions()
     },
   },
-  mounted() {
-    console.log(this.playlist)
+  computed: {
+    ...mapGetters(['currentPlaylist', 'currentPlayingTrack']),
   },
 }
 </script>
