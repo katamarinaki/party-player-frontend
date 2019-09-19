@@ -8,7 +8,7 @@ export default new Vuex.Store({
       users: [],
     },
     playlist: [],
-    playingTrack: {},
+    playingTrack: null,
   },
   mutations: {
     setRoom(state, newRoom) {
@@ -17,11 +17,18 @@ export default new Vuex.Store({
         users: [...newRoom.users],
       }
     },
+
+    setCurrentTrack(state, track) {
+      state.playingTrack = track ? { ...track } : null
+    },
+
     setPlaylist(state, newPlaylist) {
       state.playlist = newPlaylist.map(item => {
         return { ...item }
       })
-      console.log(state.playlist)
+      if (state.playingTrack == null)
+        state.state.playlist.length ? state.playlist.shift() : null
+      console.log('New playlist', state.playlist)
     },
     pushToPlaylist(state, track) {
       state.playlist.push({ ...track })

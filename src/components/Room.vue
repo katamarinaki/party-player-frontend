@@ -68,7 +68,8 @@ export default {
         .then(result => {
           this.$store.commit('setRoom', result.data)
           console.log(result.data)
-          this.$store.commit('setPlaylist', result.data.playlist.tracks)
+          this.$store.commit('setCurrentTrack',result.data.playlist.tracks[0])
+          this.$store.commit('setPlaylist', result.data.playlist.tracks.slice(1))
           console.log(this.currentPlaylist)
         })
         .catch(e => {
