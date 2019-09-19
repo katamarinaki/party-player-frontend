@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style scoped>
-youtube {
-  height: 300px;
+.player {
+  width: 100px;
 }
 </style>
