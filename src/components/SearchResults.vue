@@ -1,7 +1,7 @@
 <template>
   <div class="search-results">
-    <div v-if="!searchlist.length" class="result no-results">No resluts</div>
-    <div v-else v-for="(result, index) in searchlist" :key="index">
+    <div v-if="!results.length" class="result no-results">No resluts</div>
+    <div v-else v-for="(result, index) in results" :key="index">
       <TrackResult :track="result" @addtrack="addToList" />
     </div>
   </div>

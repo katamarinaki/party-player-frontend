@@ -27,7 +27,7 @@ export default new Vuex.Store({
       state.playlist.push({ ...track })
     },
     nextTrack(state) {
-      state.playingTrack = state.playlist.shift()
+      state.playingTrack = state.playlist.length ? state.playlist.shift() : null
     },
   },
   actions: {},
