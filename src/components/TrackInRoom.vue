@@ -7,8 +7,8 @@
       <p class="track-name">{{ track.title }}</p>
       <p class="track-channel">{{ track.channelTitle }}</p>
       <p class="track-metrics">
-        <span class="dislikes">👎 {{ dislikes }}</span>
-        <span class="likes">👍 {{ likes }}</span>
+        <span class="dislikes">👎 {{ track.dislikes }}</span>
+        <span class="likes">👍 {{ track.likes }}</span>
       </p>
     </div>
   </div>

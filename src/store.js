@@ -23,12 +23,9 @@ export default new Vuex.Store({
       state.playlist = newPlaylist.map(item => {
         return { ...item }
       })
-<<<<<<< HEAD
-=======
       if (state.playingTrack == null)
         state.state.playlist.length ? state.playlist.shift() : null
       console.log('New playlist', state.playlist)
->>>>>>> c4984550b7c92fa06cfdb4ccaf3b63bfe9f7ea4a
     },
     pushToPlaylist(state, track) {
       state.playlist.push({ ...track })

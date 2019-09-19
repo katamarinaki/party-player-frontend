@@ -25,7 +25,6 @@ export default {
     if (!this.code || this.code !== this.$route.params.code) {
       this.$router.push('/join') // прокинуть проп
     }
-    console.log(this.room)
   },
   computed: {
     code() {
