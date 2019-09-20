@@ -55,12 +55,12 @@ export default {
       //console.log('dislike')
       const trackID = this.currentPlaylist[index].id
       this.$http
-        .post("/tracks/dislike",{trackID})
-        .then(()=>{
-          console.log("disliked ",trackID)
-        }).
-        catch((e)=>{
-          console.log("error while disliking track:",trackID,e);
+        .post('/tracks/dislike', { trackID })
+        .then(() => {
+          console.log('disliked ', trackID)
+        })
+        .catch(e => {
+          console.log('error while disliking track:', trackID, e)
         })
       this.$refs.playlist.closeActions(index)
     },
@@ -68,12 +68,12 @@ export default {
       console.log('like')
       const trackID = this.currentPlaylist[index].id
       this.$http
-        .post("/tracks/like",{trackID})
-        .then(()=>{
-          console.log("liked ",trackID)
-        }).
-        catch((e)=>{
-          console.log("error while liking track:",trackID,e);
+        .post('/tracks/like', { trackID })
+        .then(() => {
+          console.log('liked ', trackID)
+        })
+        .catch(e => {
+          console.log('error while liking track:', trackID, e)
         })
       this.$refs.playlist.closeActions(index)
     },
