@@ -2,20 +2,34 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
+import plugin from './socketPlugin.js'
+
 export default new Vuex.Store({
+  plugins: [plugin],
   state: {
     room: {
-      users: [],
+      code: null,
     },
     playlist: [],
     playingTrack: null,
+    connectedToWS: false,
   },
   mutations: {
     setRoom(state, newRoom) {
-      state.room = {
-        ...newRoom,
-        users: [...newRoom.users],
-      }
+      state.room = newRoom
+        ? {
+            code: newRoom.code,
+            name: newRoom.name,
+            users: newRoom.users,
+          }
+        : {}
+      state.playlist = newRoom.playlist.map(item => {
+        return { ...item }
+      })
+      if (state.playingTrack == null)
+        state.playingTrack = state.playlist.length
+          ? state.playlist.shift()
+          : null
     },
 
     setCurrentTrack(state, track) {
@@ -27,7 +41,9 @@ export default new Vuex.Store({
         return { ...item }
       })
       if (state.playingTrack == null)
-        state.state.playlist.length ? state.playlist.shift() : null
+        state.playingTrack = state.playlist.length
+          ? state.playlist.shift()
+          : null
       console.log('New playlist', state.playlist)
     },
     pushToPlaylist(state, track) {
@@ -35,6 +51,7 @@ export default new Vuex.Store({
     },
     nextTrack(state) {
       state.playingTrack = state.playlist.length ? state.playlist.shift() : null
+      //send next track to back
     },
   },
   actions: {},

@@ -51,11 +51,28 @@ export default {
       this.$refs.playlist.closeActions(item.id)
     },
     dislike(index) {
-      console.log('dislike')
+      //console.log('dislike')
+      const trackID = playlist[index].id
+      this.$http
+        .post("/tracks/dislike",{trackID})
+        .then(()=>{
+          console.log("disliked ",trackID)
+        }).
+        catch((e)=>{
+          console.log("error while disliking track:",trackID,e);
+        })
       this.$refs.playlist.closeActions(index)
     },
     like(index) {
-      console.log('like')
+      //console.log('like')
+      this.$http
+        .post("/tracks/like",{trackID})
+        .then(()=>{
+          console.log("liked ",trackID)
+        }).
+        catch((e)=>{
+          console.log("error while liking track:",trackID,e);
+        })
       this.$refs.playlist.closeActions(index)
     },
     closeAll() {
@@ -63,7 +80,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.playlist)
+    //console.log(this.playlist)
   },
 }
 </script>

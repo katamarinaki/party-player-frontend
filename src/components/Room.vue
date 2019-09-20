@@ -3,7 +3,7 @@
     <HeaderInRoom
       :title="currentRoom.name"
       :code="currentRoom.code"
-      :users="currentRoom.users.length"
+      :users="currentRoom.users"
     />
     <RoomPlayer v-if="isAdmin" />
     <router-link class="button" to="search" tag="button" append>
@@ -67,10 +67,6 @@ export default {
         .get(`/rooms`)
         .then(result => {
           this.$store.commit('setRoom', result.data)
-          console.log(result.data)
-          this.$store.commit('setCurrentTrack',result.data.playlist.tracks[0])
-          this.$store.commit('setPlaylist', result.data.playlist.tracks.slice(1))
-          console.log(this.currentPlaylist)
         })
         .catch(e => {
           console.log('Error occured while trying to access room', e)

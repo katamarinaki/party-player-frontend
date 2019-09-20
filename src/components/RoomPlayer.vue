@@ -9,6 +9,7 @@
       :resizeDelay="0"
       @ended="playerEnded"
       @ready="playerReady"
+      @error="playerError"
       ref="youtube"
     />
   </div>
@@ -56,7 +57,9 @@ export default {
       }
     },
 
-
+    playerError(e){
+      this.$store.commit("nextTrack");
+    },
 
     // callback for when player is ready, we set up watchers for updated state
     playerReady(){
