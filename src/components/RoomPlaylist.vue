@@ -19,12 +19,12 @@
           <TrackInRoom :track="item" @click="close(index)" />
         </template>
         <template v-slot:left="{ index }">
-          <div class="dislike" @click="$emit('like', index)">
+          <div class="dislike" @click="dislike(index)">
             <i>👎</i>
           </div>
         </template>
         <template v-slot:right="{ index }">
-          <div class="like" @click="$emit('dislike', index)">
+          <div class="like" @click="like(index)">
             <i>👍</i>
           </div>
         </template>
@@ -53,7 +53,7 @@ export default {
     },
     dislike(index) {
       //console.log('dislike')
-      const trackID = playlist[index].id
+      const trackID = this.currentPlaylist[index].id
       this.$http
         .post("/tracks/dislike",{trackID})
         .then(()=>{
@@ -65,7 +65,8 @@ export default {
       this.$refs.playlist.closeActions(index)
     },
     like(index) {
-      //console.log('like')
+      console.log('like')
+      const trackID = this.currentPlaylist[index].id
       this.$http
         .post("/tracks/like",{trackID})
         .then(()=>{
