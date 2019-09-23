@@ -21,6 +21,7 @@ export default new Vuex.Store({
             code: newRoom.code,
             name: newRoom.name,
             users: newRoom.users,
+            voteskips: newRoom.voteskips,
           }
         : {}
       state.playlist = newRoom.playlist.map(item => {
