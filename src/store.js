@@ -26,31 +26,19 @@ export default new Vuex.Store({
       state.playlist = newRoom.playlist.map(item => {
         return { ...item }
       })
-      if (state.playingTrack == null)
-        state.playingTrack = state.playlist.length
-          ? state.playlist.shift()
-          : null
-    },
-
-    setCurrentTrack(state, track) {
-      state.playingTrack = track ? { ...track } : null
     },
 
     setPlaylist(state, newPlaylist) {
       state.playlist = newPlaylist.map(item => {
         return { ...item }
       })
-      if (state.playingTrack == null)
-        state.playingTrack = state.playlist.length
-          ? state.playlist.shift()
-          : null
       console.log('New playlist', state.playlist)
     },
     pushToPlaylist(state, track) {
       state.playlist.push({ ...track })
     },
     nextTrack(state) {
-      state.playingTrack = state.playlist.length ? state.playlist.shift() : null
+      if (state.playlist.length) state.playlist.shift()
       //send next track to back
     },
   },
@@ -60,7 +48,7 @@ export default new Vuex.Store({
       return state.playlist.length === 0
     },
     currentPlayingTrack(state) {
-      return { ...state.playingTrack }
+      return { ...state.playlist[0] }
     },
     currentPlaylist(state) {
       return state.playlist.map(t => {
