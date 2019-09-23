@@ -56,7 +56,7 @@ export default {
       if (this.isAdmin) this.$store.commit('nextTrack')
       else
         this.$http
-          .post('/rooms/voteforskip')
+          .post('/tracks/voteforskip')
           .then(result => console.log(result))
           .catch(e => console.log('error voting for skip', e))
     },
