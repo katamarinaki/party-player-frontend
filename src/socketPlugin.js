@@ -1,13 +1,14 @@
 import ioBase from 'socket.io-client'
 
 export default store => {
-  const socket = ioBase.connect(process.env.VUE_APP_SERVER)
+  let socket = ioBase.connect(process.env.VUE_APP_SERVER)
   socket.on('connect', () => {
     console.log(socket.connected)
   })
 
   socket.on('playlistchanged', playlist => {
     console.log(playlist)
+    store.commit('setPlaylist', playlist)
   })
 
   // if (store.state.room.code) {
@@ -28,9 +29,8 @@ export default store => {
     switch (mutation.type) {
       case 'setRoom':
         if (state.room.code) {
-          console.log('room code')
-          socket.disconnect()
-          socket.connect(`${process.env.VUE_APP_SERVER}/${state.room.code}`)
+          console.log('room code', state.room.code)
+          socket.emit('joinroom', state.room.code)
         }
         break
       default:

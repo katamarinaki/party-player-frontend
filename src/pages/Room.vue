@@ -26,7 +26,9 @@ export default {
   },
   created() {
     if (this.code && this.code === this.$route.params.code) {
-      this.getRoomFromServer()
+      if (!this.currentRoom.code) {
+        this.getRoomFromServer()
+      }
     } else {
       this.$http
         .post('/rooms/join', {
