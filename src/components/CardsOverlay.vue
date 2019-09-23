@@ -7,6 +7,14 @@
         <span class="name-channel">Channel name</span>
       </div>
       <div class="content">
+          <div class="score-button dislike-button">
+          👎 14
+          </div>
+          <div class="divider"></div>
+          <div class="score-button like-button">
+            👍  23
+          </div>
+
 
       </div>
       <button  class="hide-button">
@@ -73,5 +81,38 @@ export default {
   bottom: 10%;
   left:45%;
 }
+
+.content{
+  position: absolute;
+  top: 35%;
+  height:35%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  margin: auto 0;
+}
+
+.score-button{
+  flex-grow: 2;
+  font-size: 210%;
+
+}
+
+.like-button{
+
+  color:#23A87F
+}
+
+.dislike-button{
+
+  color: #AF3662;
+}
+
+.divider{
+  width: 2px;
+  border: 1px solid #979797;
+}
+
 
 </style>
