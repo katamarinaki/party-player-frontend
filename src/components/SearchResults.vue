@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import TrackResult from './TrackResult'
+import TrackResult from '@/components/TrackResult'
 export default {
   components: {
     TrackResult,
