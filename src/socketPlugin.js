@@ -11,6 +11,14 @@ export default store => {
     store.commit('setPlaylist', playlist)
   })
 
+  socket.on('voteskip', voteSkip => {
+    store.commit('setVotesToSkip', voteSkip)
+  })
+
+  socket.on('newuser', newuser => {
+    store.commit('setUsersCount', newuser)
+  })
+
   // if (store.state.room.code) {
   //   socket.join(store.state.room.code)
   //   console.log('joined room')

@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-import plugin from './socketPlugin.js'
+import plugin from '@/socketPlugin.js'
+import { http } from '@/networking'
 
 export default new Vuex.Store({
   plugins: [plugin],
@@ -39,12 +40,42 @@ export default new Vuex.Store({
       state.playlist.push({ ...track })
     },
     nextTrack(state) {
-      if (state.playlist.length) state.playlist.shift()
-      //send next track to back
+      //if (state.playlist.length) state.playlist.shift()
+      state.room.voteskips = 0
+
+      http
+        .get('/tracks/next')
+        .then(result => {
+          console.log('sent nextTrack')
+        })
+        .catch(e => {
+          console.log('error while sending nextTrack ', e)
+        })
+    },
+
+    setVotesToSkip(state, votes) {
+      state.room.voteskips = votes
+    },
+    setUsersCount(state, users) {
+      state.room.users = users
     },
   },
   actions: {},
   getters: {
+    isAdmin(state) {
+      let admin = localStorage.getItem(state.room.code)
+      if (admin && admin === 'true') return true
+      return false
+    },
+
+    currentUserCount(state) {
+      return state.room.users
+    },
+
+    currentVoteCount(state) {
+      return state.room.voteskips
+    },
+
     isPlayListEmpty(state) {
       return state.playlist.length === 0
     },
@@ -52,9 +83,11 @@ export default new Vuex.Store({
       return { ...state.playlist[0] }
     },
     currentPlaylist(state) {
-      return state.playlist.map(t => {
-        return { ...t }
-      })
+      return state.playlist
+        .map(t => {
+          return { ...t }
+        })
+        .slice(1)
     },
     currentRoom(state) {
       return {

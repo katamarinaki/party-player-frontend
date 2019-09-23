@@ -9,7 +9,7 @@
     <router-link class="button" to="search" tag="button" append>
       Add Track
     </router-link>
-    <RoomPlaylist :playlist="currentPlaylist" />
+    <RoomPlaylist />
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
   },
   created() {
     if (this.code && this.code === this.$route.params.code) {
-      if (!this.currentRoom.code) {
+      if (!this.currentRoom.code || this.currentRoom.code != this.code) {
         this.getRoomFromServer()
       }
     } else {
@@ -50,14 +50,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['currentRoom', 'currentPlayingTrack', 'currentPlaylist']),
+    ...mapGetters(['currentRoom', 'isAdmin']),
     code() {
       return localStorage.getItem('roomcode')
     },
   },
   data() {
     return {
-      isAdmin: true,
+      //isAdmin: true,
     }
   },
   methods: {

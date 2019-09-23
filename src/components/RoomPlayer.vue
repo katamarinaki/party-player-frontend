@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
 export default {
   data() {
@@ -31,56 +31,48 @@ export default {
       isPlayerReady: false,
     }
   },
-  watch:{
+  watch: {},
+  mounted() {},
 
-  },
-  mounted(){
-  },
-
-  methods:{
-
-
-    playerEnded(){
-      this.$store.commit("nextTrack");
+  methods: {
+    playerEnded() {
+      this.$store.commit('nextTrack')
     },
 
-    currentTrackChanged(newVideo,oldVideo){
-      if(newVideo){
-          if( !oldVideo || oldVideo.id != newVideo.id){
-            this.videoID = newVideo.id
-            this.player.playVideo()
-          }
-      }
-      else{
+    currentTrackChanged(newVideo, oldVideo) {
+      if (newVideo) {
+        if (!oldVideo || oldVideo.id != newVideo.id) {
+          this.videoID = newVideo.id
+          this.player.playVideo()
+        }
+      } else {
         this.player.stopVideo()
-        this.videoID=''
+        this.videoID = ''
       }
     },
 
-    playerError(e){
-      this.$store.commit("nextTrack");
+    playerError() {
+      console.log('Error with youtube player')
+      //this.$store.commit("nextTrack");
     },
 
     // callback for when player is ready, we set up watchers for updated state
-    playerReady(){
+    playerReady() {
       this.isPlayerReady = true
       //this.$watch("nextVideo",this.nextVideoChanged,{immediate:true})
-      this.$watch("currentPlayingTrack",this.currentTrackChanged,{immediate:true})
-    }
+      this.$watch('currentPlayingTrack', this.currentTrackChanged, {
+        immediate: true,
+      })
+    },
   },
-  computed:{
+  computed: {
+    ...mapGetters(['currentPlayingTrack', 'currentPlaylist']),
 
-     ...mapGetters(["currentPlayingTrack","currentPlaylist"]),
-
-
-
-     // player api instance, only legit after playerReady fired
-     player() {
-       return this.$refs.youtube.player;
-     }
-
-  }
-
+    // player api instance, only legit after playerReady fired
+    player() {
+      return this.$refs.youtube.player
+    },
+  },
 }
 </script>
 

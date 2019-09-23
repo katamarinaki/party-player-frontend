@@ -1,6 +1,6 @@
 <template>
   <div class="playlist">
-    <div class="playlist-empty" v-if="!currentPlaylist.length">No Tracks</div>
+    <div class="playlist-empty" v-if="isPlayListEmpty">No Tracks</div>
     <template v-else>
       <p class="playlist-title">
         <span>Tracklist</span>
@@ -8,7 +8,12 @@
         <span class="green">Swipe left to dislike</span>
       </p>
       <TrackInRoom :track="currentPlayingTrack" />
-      <input class="button" type="button" :value="`Skip this track (10)`" />
+      <input
+        class="button"
+        type="button"
+        :value="skipMessage"
+        @click="voteSkip"
+      />
       <swipe-list
         ref="playlist"
         :items="currentPlaylist"
@@ -47,6 +52,14 @@ export default {
     TrackInRoom,
   },
   methods: {
+    voteSkip() {
+      if (this.isAdmin) this.$store.commit('nextTrack')
+      else
+        this.$http
+          .post('/rooms/voteforskip')
+          .then(result => console.log(result))
+          .catch(e => console.log('error voting for skip', e))
+    },
     close(item) {
       console.log(item)
       this.$refs.playlist.closeActions(item.id)
@@ -82,7 +95,22 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['currentPlaylist', 'currentPlayingTrack']),
+    ...mapGetters([
+      'currentPlaylist',
+      'currentPlayingTrack',
+      'isPlayListEmpty',
+      'isAdmin',
+      'currentUserCount',
+      'currentVoteCount',
+    ]),
+    skipMessage() {
+      return (
+        `Skip this track` +
+        (this.currentVoteCount > 0
+          ? ` ${this.currentVoteCount}/${this.currentUserCount}`
+          : '')
+      )
+    },
   },
 }
 </script>
