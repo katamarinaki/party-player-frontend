@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import RoomHeader from './RoomHeader'
-import SearchInput from './SearchInput'
-import SearchResults from './SearchResults'
+import RoomHeader from '@/components/RoomHeader'
+import SearchInput from '@/components/SearchInput'
+import SearchResults from '@/components/SearchResults'
 export default {
   components: {
     RoomHeader,

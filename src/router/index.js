@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import CreateRoom from '../components/CreateRoom'
-import OpenRoom from '../components/JoinRoom'
-import Home from '../components/Home'
-import Room from '../components/Room'
-import Search from '../components/Search'
-import NotFound from '../components/NotFound'
-import Test from '../components/Test'
+import CreateRoom from '@/pages/CreateRoom'
+import OpenRoom from '@/pages/JoinRoom'
+import Home from '@/pages/Home'
+import Room from '@/pages/Room'
+import Search from '@/pages/Search'
+import NotFound from '@/pages/NotFound'
+import Test from '@/pages/Test'
 
 Vue.use(Router)
 

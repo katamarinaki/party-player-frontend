@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import HeaderInRoom from './HeaderInRoom'
-import RoomPlayer from './RoomPlayer'
-import RoomPlaylist from './RoomPlaylist'
+import HeaderInRoom from '@/components/HeaderInRoom'
+import RoomPlayer from '@/components/RoomPlayer'
+import RoomPlaylist from '@/components/RoomPlaylist'
 import { mapGetters } from 'vuex'
 export default {
   components: {

@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import RoomHeader from './RoomHeader'
+import RoomHeader from '@/components/RoomHeader'
 export default {
   components: {
     RoomHeader,

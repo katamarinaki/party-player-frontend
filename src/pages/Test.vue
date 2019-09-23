@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import RoomPlaylist from './RoomPlaylist'
+import RoomPlaylist from '@/components//RoomPlaylist'
 export default {
   components: {
     RoomPlaylist,
