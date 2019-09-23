@@ -36,7 +36,7 @@ export default {
 
   methods: {
     playerEnded() {
-      this.$store.commit('nextTrack')
+      this.$store.commit('nextMeme')
     },
 
     currentTrackChanged(newVideo, oldVideo) {
@@ -53,7 +53,7 @@ export default {
 
     playerError() {
       console.log('Error with youtube player')
-      //this.$store.commit("nextTrack");
+      //this.$store.commit("nextMeme");
     },
 
     // callback for when player is ready, we set up watchers for updated state

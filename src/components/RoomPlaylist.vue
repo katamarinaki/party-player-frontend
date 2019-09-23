@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     voteSkip() {
-      if (this.isAdmin) this.$store.commit('nextTrack')
+      if (this.isAdmin) this.$store.commit('nextMeme')
       else
         this.$http
           .post('/tracks/voteforskip')

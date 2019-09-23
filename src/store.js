@@ -39,17 +39,17 @@ export default new Vuex.Store({
     pushToPlaylist(state, track) {
       state.playlist.push({ ...track })
     },
-    nextTrack(state) {
+    nextMeme(state) {
       //if (state.playlist.length) state.playlist.shift()
       state.room.voteskips = 0
 
       http
         .get('/tracks/next')
         .then(result => {
-          console.log('sent nextTrack')
+          console.log('sent nextMeme')
         })
         .catch(e => {
-          console.log('error while sending nextTrack ', e)
+          console.log('error while sending nextMeme ', e)
         })
     },
 
