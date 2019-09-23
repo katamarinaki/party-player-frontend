@@ -37,7 +37,7 @@
 // TO DO - добавить кастомный ID в темплейт плейлиста
 import { SwipeList, SwipeOut } from 'vue-swipe-actions'
 import 'vue-swipe-actions/dist/vue-swipe-actions.css'
-import TrackInRoom from './TrackInRoom'
+import TrackInRoom from '@/components/TrackInRoom'
 import { mapGetters } from 'vuex'
 
 export default {
