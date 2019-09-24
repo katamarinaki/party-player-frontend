@@ -37,11 +37,11 @@ export default {
 
 <style scoped>
 .track-container {
-  margin: 10px 0;
   overflow: hidden;
   border-radius: 5px;
   background-color: lightgray;
   width: 100%;
+  max-width: 350px;
   height: 80px;
 }
 .track-image {

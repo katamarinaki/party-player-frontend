@@ -2,18 +2,20 @@
   <div class="playlist">
     <div class="playlist-empty" v-if="isPlayListEmpty">No Tracks</div>
     <template v-else>
-      <p class="playlist-title">
+      <TrackInRoom class="current" :track="currentPlayingTrack" />
+      <div class="button-container">
+        <input
+          class="button"
+          type="button"
+          :value="skipMessage"
+          @click="voteSkip"
+        />
+      </div>
+      <div class="playlist-title">
         <span>Tracklist</span>
         <span class="red">Swipe right to like</span>
         <span class="green">Swipe left to dislike</span>
-      </p>
-      <TrackInRoom :track="currentPlayingTrack" />
-      <input
-        class="button"
-        type="button"
-        :value="skipMessage"
-        @click="voteSkip"
-      />
+      </div>
       <swipe-list
         ref="playlist"
         :items="currentPlaylist"
@@ -40,14 +42,13 @@
 
 <script>
 // TO DO - добавить кастомный ID в темплейт плейлиста
-import { SwipeList, SwipeOut } from 'vue-swipe-actions'
+import { SwipeList } from 'vue-swipe-actions'
 import 'vue-swipe-actions/dist/vue-swipe-actions.css'
 import TrackInRoom from '@/components/TrackInRoom'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    SwipeOut,
     SwipeList,
     TrackInRoom,
   },
@@ -118,10 +119,21 @@ export default {
 <style scoped>
 .playlist {
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
+.button-container {
+  width: 100%;
+  margin: 2px 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .button {
-  margin-left: 20px;
+  width: 100%;
+}
+.current {
 }
 
 .playlist-empty {
@@ -129,7 +141,9 @@ export default {
 }
 
 .playlist-title {
-  margin-left: 10px;
+  text-align: center;
+  width: 100%;
+  margin: 15px 0 10px 0;
   font-size: 16px;
 }
 .red {
