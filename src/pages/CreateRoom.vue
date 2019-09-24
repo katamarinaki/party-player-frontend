@@ -12,7 +12,7 @@
         v-model="roomName"
       />
       <input
-        class="text-input"
+        class="text-input password"
         type="password"
         name="room-password"
         id="room-password"
@@ -70,12 +70,6 @@ export default {
 </script>
 
 <style scoped>
-.create-room {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
 .title {
   font-size: 32px;
   margin: 50px 0 0 0;
@@ -85,12 +79,15 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px 20px;
+  margin: 40px 5%;
 }
-#room-password {
-  margin-top: 5px;
+.create-form > input {
+  width: 100%;
+}
+.password {
+  margin-top: 15px;
 }
 .button {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 </style>

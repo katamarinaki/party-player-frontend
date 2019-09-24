@@ -1,7 +1,7 @@
 <template>
   <div class="search-controls">
     <input
-      class="search-input"
+      class="text-input"
       type="text"
       name="yt-search"
       id="yt-search"
@@ -9,12 +9,7 @@
       v-model="searchString"
       @keyup.enter="search()"
     />
-    <input
-      class="search-button"
-      type="button"
-      value="Search"
-      @click="search()"
-    />
+    <input class="button" type="button" value="Search" @click="search()" />
   </div>
 </template>
 
@@ -45,7 +40,7 @@ export default {
       const searchArray = this.searchString.split(' ')
       this.api.q = searchArray.join('+')
       const { baseUrl, part, type, order, maxResults, q, key } = this.api
-      const searchCategory = '&videoCategoryId=10'
+      // const searchCategory = '&videoCategoryId=10'
       const apiUrl = `${baseUrl}part=${part}&type=${type}&order=${order}&q=${q}&maxResults=${maxResults}&key=${key}`
       axios
         .get(apiUrl)
@@ -70,18 +65,16 @@ export default {
 
 <style scoped>
 .search-controls {
-  margin: 10px;
+  margin: 20px 5%;
   display: flex;
-  height: 3em;
+  justify-content: center;
 }
-.search-input {
-  padding: 5px;
-  font-size: 20px;
-  width: 100%;
+.text-input {
+  flex-shrink: 1;
 }
-.search-button {
-  margin-left: 5px;
-  border-radius: 10px;
-  height: 100%;
+.button {
+  display: none;
+  flex-shrink: 6;
+  max-width: 100px;
 }
 </style>

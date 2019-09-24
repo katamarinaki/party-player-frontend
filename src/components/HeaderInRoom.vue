@@ -4,10 +4,10 @@
       <p>&lt;</p>
     </div>
     <p class="title">
-      <span class="name">{{ title }}</span>
-      <span class="code">{{ code }}</span>
+      <span class="name">{{ currentRoom.name }}</span>
+      <span class="code">{{ currentRoom.code }}</span>
     </p>
-    <p class="users">👥 {{ users }}</p>
+    <p class="users">👥 {{ currentRoom.users }}</p>
     <div class="action-right">
       <p>#</p>
     </div>
@@ -15,11 +15,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
+  name: 'HeaderInRoom',
+  computed: {
+    ...mapGetters(['currentRoom']),
+  },
   props: {
-    title: String,
-    code: String,
-    users: Number,
     backActionNeeded: {
       type: Boolean,
       default: false,
@@ -30,13 +32,14 @@ export default {
 
 <style scoped>
 .header {
+  padding-top: 10px;
   width: 100%;
   position: relative;
   height: 80px;
   border-bottom: 2px solid black;
 }
 .title {
-  margin: 15px 0;
+  margin: 0;
   font-size: 18px;
   text-align: center;
 }
@@ -46,7 +49,7 @@ export default {
 }
 .users {
   color: purple;
-  margin: 0;
+  margin: 10px 0;
   text-align: center;
 }
 .action-left {

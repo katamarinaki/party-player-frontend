@@ -1,5 +1,5 @@
 <template>
-  <div class="track-container">
+  <div class="track">
     <div class="track-image">
       <img :src="track.thumbnailSrc" alt="track" />
     </div>
@@ -36,13 +36,13 @@ export default {
 </script>
 
 <style scoped>
-.track-container {
-  margin: 10px 0;
-  overflow: hidden;
+.track {
   border-radius: 5px;
   background-color: lightgray;
   width: 100%;
+  max-width: 350px;
   height: 80px;
+  overflow: hidden;
 }
 .track-image {
   vertical-align: top;
@@ -79,6 +79,10 @@ p.track-channel {
 }
 .add-button {
   display: inline-block;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
   height: 100%;
   width: 10%;
   font-size: 36px;

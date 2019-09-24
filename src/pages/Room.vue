@@ -1,14 +1,13 @@
 <template>
   <div class="room">
-    <HeaderInRoom
-      :title="currentRoom.name"
-      :code="currentRoom.code"
-      :users="currentRoom.users"
-    />
+    <HeaderInRoom />
     <RoomPlayer v-if="isAdmin" />
-    <router-link class="button" to="search" tag="button" append>
-      Add Track
-    </router-link>
+    <div class="button-container">
+      <router-link class="button" to="search" tag="button" append>
+        Add Track
+      </router-link>
+    </div>
+
     <RoomPlaylist />
   </div>
 </template>
@@ -79,16 +78,13 @@ export default {
 </script>
 
 <style scoped>
-.room {
-  width: 100%;
-  height: 100%;
+.button-container {
+  margin: 20px 5%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
 }
-
 .button {
-  margin-top: 20px;
+  width: 100%;
 }
 </style>

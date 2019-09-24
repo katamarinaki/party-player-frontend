@@ -22,28 +22,15 @@ export default {
 .home {
   color: black;
   width: 100%;
-  height: 100%;
-}
-h3 {
-  font-weight: bold;
-  margin: 0;
-}
-.content {
-  width: 300px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .header {
+  margin: 5%;
   font-size: 38px;
   font-weight: bolder;
-  margin: 40px 35px;
   text-align: center;
 }
 .buttons {
-  margin: 50px 30px;
+  margin: 50px 5%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -54,7 +41,7 @@ h3 {
 .button {
   background-color: #d8d8d8;
   font-size: 32px;
-  width: 320px;
+  width: 100%;
   height: 140px;
 }
 </style>

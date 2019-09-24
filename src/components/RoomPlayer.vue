@@ -79,6 +79,9 @@ export default {
 <style scoped>
 .player {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .player-iframe {
   width: 100%;

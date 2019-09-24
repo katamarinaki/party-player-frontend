@@ -1,8 +1,15 @@
 <template>
   <div class="search-results">
-    <div v-if="!results.length" class="result no-results">No resluts</div>
-    <div v-else v-for="(result, index) in results" :key="index">
-      <TrackResult :track="result" @addtrack="addToList" />
+    <div v-if="!results.length" class="no-results">
+      Search your favorite track on YouTube!
+    </div>
+    <div class="results" v-else>
+      <TrackResult
+        v-for="(result, index) in results"
+        :key="index"
+        :track="result"
+        @addtrack="addToList"
+      />
     </div>
   </div>
 </template>
@@ -38,12 +45,16 @@ export default {
 </script>
 
 <style scoped>
-.search-results {
-  padding: 10px;
-  overflow-y: scroll;
-}
 .no-results {
-  overflow-y: hidden;
   text-align: center;
+}
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 5%;
+}
+.track {
+  margin-top: 10px;
 }
 </style>

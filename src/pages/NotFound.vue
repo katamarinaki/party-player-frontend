@@ -6,11 +6,16 @@
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'NotFound',
+}
 </script>
 
 <style scoped>
 .not-found {
+  font-size: 34px;
+  text-align: center;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;

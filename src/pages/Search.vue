@@ -1,8 +1,8 @@
 <template>
-  <div class="search-component">
+  <div class="search-container">
     <RoomHeader :title="`Search`" :backActionNeeded="true" />
     <SearchInput @newsearch="onSearch" />
-    <SearchResults class="results" :results="searchResults" />
+    <SearchResults :results="searchResults" />
   </div>
 </template>
 
@@ -39,17 +39,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.search-component {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.header,
-.search-controls,
-.search-results {
-  flex-shrink: 0;
-}
-</style>
+<style scoped></style>
