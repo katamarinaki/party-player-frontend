@@ -2,36 +2,32 @@
   <div class="playlist">
     <div class="playlist-empty" v-if="isPlayListEmpty">No Tracks</div>
     <template v-else>
-      <TrackInRoom class="current" :track="currentPlayingTrack" />
-      <div class="button-container">
-        <input
-          class="button"
-          type="button"
-          :value="skipMessage"
-          @click="voteSkip"
-        />
-      </div>
+      <CurrentTrack />
       <div class="playlist-title">
         <span>Tracklist</span>
-        <span class="red">Swipe right to like</span>
-        <span class="green">Swipe left to dislike</span>
+        <span class="green">Swipe left to like</span>
+        <span class="red">Swipe right to dislike</span>
       </div>
       <swipe-list
         ref="playlist"
         :items="currentPlaylist"
-        @active="closeAll"
         @swipeout:click="closeAll"
+        v-touch:end="closeAll"
       >
-        <template v-slot="{ item }">
-          <TrackInRoom :track="item" @click="close(index)" />
+        <template v-slot="{ item, index }">
+          <TrackInRoom
+            :track="item"
+            v-touch:swipe.left="swipeLeft(index)"
+            v-touch:swipe.right="swipeRight(index)"
+          />
         </template>
         <template v-slot:left="{ index }">
-          <div class="dislike" @click="dislike(index)">
+          <div class="dislike">
             <i>👎</i>
           </div>
         </template>
         <template v-slot:right="{ index }">
-          <div class="like" @click="like(index)">
+          <div class="like">
             <i>👍</i>
           </div>
         </template>
@@ -46,20 +42,20 @@ import { SwipeList } from 'vue-swipe-actions'
 import 'vue-swipe-actions/dist/vue-swipe-actions.css'
 import TrackInRoom from '@/components/TrackInRoom'
 import { mapGetters } from 'vuex'
+import CurrentTrack from './CurrentTrack'
 
 export default {
   components: {
+    CurrentTrack,
     SwipeList,
     TrackInRoom,
   },
   methods: {
-    voteSkip() {
-      if (this.isAdmin) this.$store.commit('nextMeme')
-      else
-        this.$http
-          .post('/tracks/voteforskip')
-          .then(result => console.log(result))
-          .catch(e => console.log('error voting for skip', e))
+    swipeLeft(index) {
+      return this.like.bind(this, index)
+    },
+    swipeRight(index) {
+      return this.dislike.bind(this, index)
     },
     close(item) {
       console.log(item)
@@ -76,7 +72,6 @@ export default {
         .catch(e => {
           console.log('error while disliking track:', trackID, e)
         })
-      this.$refs.playlist.closeActions(index)
     },
     like(index) {
       console.log('like')
@@ -89,7 +84,6 @@ export default {
         .catch(e => {
           console.log('error while liking track:', trackID, e)
         })
-      this.$refs.playlist.closeActions(index)
     },
     closeAll() {
       this.$refs.playlist.closeActions()
@@ -118,32 +112,30 @@ export default {
 
 <style scoped>
 .playlist {
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
+}
+.list {
+  width: 100%;
+  align-items: center;
+}
+.test-t {
+  margin: 5px 5%;
 }
 .button-container {
-  width: 100%;
   margin: 2px 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.button {
-  width: 100%;
-}
-.current {
-}
-
 .playlist-empty {
   text-align: center;
 }
 
 .playlist-title {
-  text-align: center;
-  width: 100%;
-  margin: 15px 0 10px 0;
+  margin: 10px 5%;
   font-size: 16px;
 }
 .red {
@@ -165,7 +157,6 @@ export default {
 .dislike {
   color: white;
   font-size: 48px;
-  width: 50px;
 }
 .dislike > i {
   text-align: center;
