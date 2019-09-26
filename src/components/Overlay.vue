@@ -1,14 +1,20 @@
 <template>
-  <div class="overlay">
-    <TrackCard />
+  <div v-show="show" class="overlay">
+    <TrackCard @hide="hideOverlay" />
   </div>
 </template>
 
 <script>
-import TrackCard from './TrackCard'
+import TrackCard from '@/components/TrackCard'
 export default {
+  props: ['show'],
   components: {
     TrackCard,
+  },
+  methods: {
+    hideOverlay() {
+      this.$emit('update:show', false)
+    },
   },
   data() {
     return {}

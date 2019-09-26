@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import OverlayNew from '@/components/OverlayNew'
+import OverlayNew from '@/components/Overlay'
 
 export default {
   components: {
