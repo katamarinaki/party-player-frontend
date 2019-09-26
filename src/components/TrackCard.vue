@@ -96,18 +96,18 @@ p {
   align-items: center;
 }
 .dislike {
-  color: green;
+  color: #4d1414;
   font-size: 32px;
 }
 .like {
-  color: red;
+  color: #00c6ba;
   font-size: 32px;
 }
 .vote-text.big {
   font-size: 32px;
 }
 .button-container {
-  margin: 25px 5%;
+  margin: 25px 7%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,5 +115,6 @@ p {
 .divider {
   width: 2px;
   border: 1px solid #979797;
+  opacity: 0.1;
 }
 </style>

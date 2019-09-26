@@ -79,7 +79,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px 5%;
+  margin: 40px 7%;
 }
 .join-form > input {
   width: 100%;

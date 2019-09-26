@@ -65,7 +65,7 @@ export default {
 
 <style scoped>
 .search-controls {
-  margin: 20px 5%;
+  margin: 20px 7%;
   display: flex;
   justify-content: center;
 }

@@ -5,8 +5,8 @@
       <CurrentTrack />
       <div class="playlist-title">
         <span>Tracklist</span>
-        <span class="green">Swipe left to like</span>
         <span class="red">Swipe right to dislike</span>
+        <span class="green">Swipe left to like</span>
       </div>
       <swipe-list
         ref="playlist"
@@ -118,7 +118,7 @@ export default {
   margin-bottom: 20px;
 }
 .button-container {
-  margin: 2px 5%;
+  margin: 2px 7%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -128,22 +128,26 @@ export default {
 }
 
 .playlist-title {
-  margin: 10px 5%;
-  font-size: 16px;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  padding-left: 5%;
+  font-size: 12px;
+  text-align: left;
 }
 .red {
-  margin-left: 10px;
-  color: red;
+  margin-left: 40px;
+  color: #4d1414;
 }
 .green {
   margin-left: 10px;
-  color: green;
+  color: #00c6ba;
 }
 .dislike {
-  background-color: red;
+  background-color: #4d1414;
 }
 .like {
-  background-color: green;
+  background-color: #00c6ba;
 }
 
 .like,

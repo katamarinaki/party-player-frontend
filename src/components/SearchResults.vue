@@ -52,7 +52,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px 5%;
+  margin: 10px 7%;
 }
 .track {
   margin-top: 10px;
