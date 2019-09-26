@@ -26,24 +26,30 @@ body {
   height: 100%;
   color: #ffffff;
 }
-.button,
 .text-input {
+  color: #ffffff;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #878787;
+  outline: none;
+  font-size: 16px;
+  height: 50px;
+  width: 100%;
+  max-width: 350px;
+}
+.text-input::placeholder {
+  color: #878787;
+}
+.button {
+  cursor: pointer;
+  background-color: #242333;
   color: #ffffff;
   border: none;
   outline: none;
   border-radius: 3px;
   font-size: 16px;
   height: 50px;
-  padding: 0 15px;
   width: 100%;
   max-width: 350px;
-}
-.button {
-  cursor: pointer;
-  background-color: #242333;
-}
-.text-input {
-  color: black;
-  background-color: #d8d8d8;
 }
 </style>
