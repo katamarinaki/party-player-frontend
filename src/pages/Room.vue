@@ -98,6 +98,7 @@ export default {
 }
 
 .overlay-button {
+  z-index: 50;
   position: fixed;
   left: -1px;
   bottom: 15px;

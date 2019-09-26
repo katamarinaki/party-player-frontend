@@ -9,6 +9,7 @@
         <span class="green">Swipe left to like</span>
       </div>
       <swipe-list
+        class="list"
         ref="playlist"
         :items="currentPlaylist"
         @swipeout:click="closeAll"
@@ -126,17 +127,22 @@ export default {
 .playlist-empty {
   text-align: center;
 }
-
+.list {
+  margin: 0 7%;
+}
+.list * {
+  margin-bottom: 20px;
+}
 .playlist-title {
   width: 100%;
   margin-top: 30px;
   margin-bottom: 10px;
-  padding-left: 5%;
+  padding-left: 7%;
   font-size: 12px;
   text-align: left;
 }
 .red {
-  margin-left: 40px;
+  margin-left: 5%;
   color: #4d1414;
 }
 .green {
@@ -144,9 +150,11 @@ export default {
   color: #00c6ba;
 }
 .dislike {
+  margin-right: 10px;
   background-color: #4d1414;
 }
 .like {
+  margin-left: 10px;
   background-color: #00c6ba;
 }
 

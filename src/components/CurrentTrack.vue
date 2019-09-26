@@ -57,6 +57,9 @@ export default {
   flex-direction: column;
   align-items: center;
 }
+.track-container {
+  margin: 0;
+}
 .current-title {
   width: 100%;
 }
