@@ -46,7 +46,4 @@ export default {
   left: 25px;
   top: 30px;
 }
-.action-left > p {
-  margin: 12px 0;
-}
 </style>

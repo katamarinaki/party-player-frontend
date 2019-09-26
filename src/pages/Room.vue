@@ -7,7 +7,6 @@
         Add Track
       </router-link>
     </div>
-
     <RoomPlaylist />
   </div>
 </template>
@@ -79,7 +78,7 @@ export default {
 
 <style scoped>
 .button-container {
-  margin: 20px 5%;
+  margin: 20px 7%;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,8 +1,10 @@
 <template>
   <div class="header">
-    <div v-if="backActionNeeded" class="action-left" @click="$router.back(-1)">
-      <p>&lt;</p>
-    </div>
+    <div
+      v-if="backActionNeeded"
+      class="action-left"
+      @click="$router.back(-1)"
+    ></div>
     <p class="title">
       <span class="name">{{ currentRoom.name }}</span>
       <span class="code">{{ currentRoom.code }}</span>
@@ -44,23 +46,25 @@ export default {
   text-align: center;
 }
 .code {
-  color: lightgray;
+  opacity: 0.6;
   margin-left: 5px;
 }
 .users {
-  color: purple;
   margin: 10px 0;
   text-align: center;
 }
 .action-left {
+  border-top: 4px solid white;
+  border-left: 4px solid white;
   padding-left: 10px;
   cursor: pointer;
-  height: 100%;
-  width: 80px;
+  height: 14px;
+  width: 14px;
+  transform: rotate(-45deg);
   font-size: 48px;
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 25px;
+  top: 30px;
 }
 .action-right {
   text-align: center;
