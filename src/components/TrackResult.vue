@@ -37,12 +37,13 @@ export default {
 
 <style scoped>
 .track {
-  border-radius: 5px;
-  background-color: lightgray;
+  border-radius: 3px;
+  background-color: #0c0e13;
   width: 100%;
   max-width: 350px;
   height: 80px;
   overflow: hidden;
+  border: 1px solid #242333;
 }
 .track-image {
   vertical-align: top;
@@ -78,6 +79,7 @@ p.track-channel {
   white-space: nowrap;
 }
 .add-button {
+  color: #242333;
   display: inline-block;
   background: none;
   border: none;

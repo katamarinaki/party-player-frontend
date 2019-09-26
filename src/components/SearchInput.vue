@@ -5,7 +5,7 @@
       type="text"
       name="yt-search"
       id="yt-search"
-      placeholder="search on YT"
+      placeholder="Search on YouTube"
       v-model="searchString"
       @keyup.enter="search()"
     />
@@ -71,6 +71,9 @@ export default {
 }
 .text-input {
   flex-shrink: 1;
+  border: 1px solid #0e1422;
+  border-radius: 3px;
+  padding-left: 20px;
 }
 .button {
   display: none;
