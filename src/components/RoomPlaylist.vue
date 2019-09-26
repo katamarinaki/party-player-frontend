@@ -23,12 +23,12 @@
         </template>
         <template v-slot:left="{ index }">
           <div class="dislike">
-            <i>👎</i>
+            <div>👎</div>
           </div>
         </template>
         <template v-slot:right="{ index }">
           <div class="like">
-            <i>👍</i>
+            <div>👍</div>
           </div>
         </template>
       </swipe-list>
@@ -117,13 +117,6 @@ export default {
   align-items: center;
   margin-bottom: 20px;
 }
-.list {
-  width: 100%;
-  align-items: center;
-}
-.test-t {
-  margin: 5px 5%;
-}
 .button-container {
   margin: 2px 5%;
   display: flex;
@@ -155,10 +148,11 @@ export default {
 
 .like,
 .dislike {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: white;
-  font-size: 48px;
-}
-.dislike > i {
-  text-align: center;
+  font-size: 24px;
+  width: 200px;
 }
 </style>

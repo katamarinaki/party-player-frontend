@@ -7,10 +7,21 @@
       <p class="track-title">{{ track.title }}</p>
       <p class="track-channelname">{{ track.channelTitle }}</p>
       <div class="button-block">
-        <input type="button" value="Dislike" />
-        <input type="button" value="Like" />
+        <div class="vote-button">
+          <p class="dislike">👎</p>
+          <p class="vote-text big">No</p>
+          <p class="vote-text">Swipe to left</p>
+        </div>
+        <div class="divider"></div>
+        <div class="vote-button">
+          <p class="like">👍</p>
+          <p class="vote-text big">Yes</p>
+          <p class="vote-text">Swipe to right</p>
+        </div>
       </div>
-      <input class="skip-button" type="button" value="Skip" />
+      <div class="button-container">
+        <input class="button" type="button" value="Hide" />
+      </div>
     </div>
   </div>
 </template>
@@ -37,12 +48,17 @@ export default {
 
 <style scoped>
 .track-card {
-  background-color: yellowgreen;
-  width: 300px;
-  height: 500px;
+  color: white;
+  margin: 20px;
+  background-color: #0d0f19;
+  border: 1px solid rgba(114, 114, 114, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 2px 40px rgba(28, 28, 28, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
 }
 .track-content {
-  padding: 10px 20px;
+  padding: 15px 20px;
   height: 70%;
 }
 p {
@@ -57,10 +73,42 @@ p {
   width: 100%;
   height: 100%;
 }
-.button-block {
-  margin-top: 50px;
+.track-channelname {
+  margin-top: 5px;
+  opacity: 0.3;
 }
-.skip-button {
-  margin-top: 50px;
+.button-block {
+  margin-top: 30px;
+  display: flex;
+  height: 120px;
+  justify-content: center;
+}
+.vote-button {
+  cursor: pointer;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dislike {
+  color: green;
+  font-size: 32px;
+}
+.like {
+  color: red;
+  font-size: 32px;
+}
+.vote-text.big {
+  font-size: 32px;
+}
+.button-container {
+  margin: 25px 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.divider {
+  width: 2px;
+  border: 1px solid #979797;
 }
 </style>

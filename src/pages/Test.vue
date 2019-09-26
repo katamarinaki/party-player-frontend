@@ -1,18 +1,15 @@
 <template>
   <div class="test">
-    <RoomPlaylist />
-    <CardsOverlay></CardsOverlay>
+    <OverlayNew />
   </div>
 </template>
 
 <script>
-import RoomPlaylist from '@/components/RoomPlaylist'
-import CardsOverlay from '@/components/CardsOverlay'
+import OverlayNew from '@/components/OverlayNew'
 
 export default {
   components: {
-    RoomPlaylist,
-    CardsOverlay,
+    OverlayNew,
   },
 }
 </script>
