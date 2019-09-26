@@ -8,6 +8,10 @@
       </router-link>
     </div>
     <RoomPlaylist />
+    <button class="button overlay-button" @click="openOverlay">
+      Vote For Tracks
+    </button>
+    <Overlay :show.sync="overlayOpened" />
   </div>
 </template>
 
@@ -15,12 +19,14 @@
 import HeaderInRoom from '@/components/HeaderInRoom'
 import RoomPlayer from '@/components/RoomPlayer'
 import RoomPlaylist from '@/components/RoomPlaylist'
+import Overlay from '@/components/Overlay'
 import { mapGetters } from 'vuex'
 export default {
   components: {
     HeaderInRoom,
     RoomPlayer,
     RoomPlaylist,
+    Overlay,
   },
   created() {
     if (this.code && this.code === this.$route.params.code) {
@@ -55,10 +61,14 @@ export default {
   },
   data() {
     return {
-      //isAdmin: true,
+      overlayOpened: false,
     }
   },
   methods: {
+    openOverlay() {
+      this.overlayOpened = true
+    },
+
     openSearch() {
       this.$router.push({ path: '/search', append: true })
     },
@@ -85,5 +95,12 @@ export default {
 }
 .button {
   width: 100%;
+}
+
+.overlay-button {
+  position: fixed;
+  left: -1px;
+  bottom: 15px;
+  width: fit-content;
 }
 </style>

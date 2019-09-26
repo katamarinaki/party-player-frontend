@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="button-container">
-        <input class="button" type="button" value="Hide" />
+        <input class="button" type="button" value="Hide" @click="hideOverlay" />
       </div>
     </div>
   </div>
@@ -41,6 +41,11 @@ export default {
           dislikes: 10,
         }
       },
+    },
+  },
+  methods: {
+    hideOverlay() {
+      this.$emit('hide')
     },
   },
 }

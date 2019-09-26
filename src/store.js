@@ -62,6 +62,15 @@ export default new Vuex.Store({
   },
   actions: {},
   getters: {
+    unvotedTracks(state) {
+      return state.playlist
+        .map(t => {
+          return { ...t }
+        })
+        .slice(1)
+        .filter(t => t.voted == 0)
+    },
+
     isAdmin(state) {
       let admin = localStorage.getItem(state.room.code)
       if (admin && admin === 'true') return true

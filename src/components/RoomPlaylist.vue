@@ -63,26 +63,26 @@ export default {
     },
     dislike(index) {
       //console.log('dislike')
-      const trackID = this.currentPlaylist[index].id
+      const trackUUID = this.currentPlaylist[index].uuid
       this.$http
-        .post('/tracks/dislike', { trackID })
+        .post('/tracks/dislike', { trackUUID })
         .then(() => {
-          console.log('disliked ', trackID)
+          console.log('disliked ', trackUUID)
         })
         .catch(e => {
-          console.log('error while disliking track:', trackID, e)
+          console.log('error while disliking track:', trackUUID, e)
         })
     },
     like(index) {
       console.log('like')
-      const trackID = this.currentPlaylist[index].id
+      const trackUUID = this.currentPlaylist[index].uuid
       this.$http
-        .post('/tracks/like', { trackID })
+        .post('/tracks/like', { trackUUID })
         .then(() => {
-          console.log('liked ', trackID)
+          console.log('liked ', trackUUID)
         })
         .catch(e => {
-          console.log('error while liking track:', trackID, e)
+          console.log('error while liking track:', trackUUID, e)
         })
     },
     closeAll() {
