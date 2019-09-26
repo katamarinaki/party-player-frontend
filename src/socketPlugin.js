@@ -3,7 +3,7 @@ import ioBase from 'socket.io-client'
 export default store => {
   let socket = ioBase.connect(process.env.VUE_APP_SERVER)
   socket.on('connect', () => {
-    console.log(socket.connected)
+    console.log('Socket connected')
   })
 
   socket.on('playlistchanged', playlist => {
@@ -18,15 +18,6 @@ export default store => {
   socket.on('newuser', newuser => {
     store.commit('setUsersCount', newuser)
   })
-
-  // if (store.state.room.code) {
-  //   socket.join(store.state.room.code)
-  //   console.log('joined room')
-  // }
-  // socket.on('message', function(data) {
-  //   console.log(data)
-  // })
-
   store.subscribe((mutation, state) => {
     // вызывается после каждой мутации
     // мутация передаётся в формате `{ type, payload }`.
