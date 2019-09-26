@@ -17,19 +17,21 @@ export default {
 body {
   width: 100%;
   margin: 0;
+  background-color: #04070d;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
   height: 100%;
+  color: #ffffff;
 }
 .button,
 .text-input {
+  color: #ffffff;
   border: none;
   outline: none;
-  border-radius: 4px;
+  border-radius: 3px;
   font-size: 16px;
   height: 50px;
   padding: 0 15px;
@@ -38,7 +40,7 @@ body {
 }
 .button {
   cursor: pointer;
-  background-color: #61a1ec;
+  background-color: #242333;
 }
 .text-input {
   color: black;

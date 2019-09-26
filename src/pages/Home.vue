@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <p class="header">WELCOME TO</p>
     <p class="header">PARTY PLAYER</p>
     <div class="buttons">
       <router-link class="button" to="/create" tag="button">
@@ -20,28 +21,24 @@ export default {
 
 <style scoped>
 .home {
-  color: black;
   width: 100%;
 }
 .header {
-  margin: 5%;
-  font-size: 38px;
+  margin: 0 10%;
+  font-size: 24px;
   font-weight: bolder;
-  text-align: center;
+  text-align: left;
+}
+.header:first-child {
+  margin-top: 30%;
 }
 .buttons {
-  margin: 50px 5%;
+  margin: 100px 7%;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 .button:nth-child(2) {
   margin-top: 24px;
-}
-.button {
-  background-color: #d8d8d8;
-  font-size: 32px;
-  width: 100%;
-  height: 140px;
 }
 </style>
