@@ -77,7 +77,7 @@ export default {
       this.$http
         .post('/tracks/dislike', { trackUUID })
         .then(() => {
-          console.log('disliked ', trackUUID)
+          console.log('disliked')
         })
         .catch(e => {
           console.log('error while disliking track:', trackUUID, e)
@@ -89,7 +89,7 @@ export default {
       this.$http
         .post('/tracks/like', { trackUUID })
         .then(() => {
-          console.log('liked ', trackUUID)
+          console.log('liked')
         })
         .catch(e => {
           console.log('error while liking track:', trackUUID, e)

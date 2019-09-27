@@ -63,7 +63,7 @@ export default {
           this.getRoomFromServer()
         })
         .catch(err => {
-          console.log(err.response)
+          console.log(err)
           this.$router.push('/join') // прокинуть проп
         })
     }

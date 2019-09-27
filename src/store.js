@@ -34,7 +34,7 @@ export default new Vuex.Store({
       state.playlist = newPlaylist.map(item => {
         return { ...item }
       })
-      console.log('New playlist', state.playlist)
+      // console.log('New playlist', state.playlist)
     },
     pushToPlaylist(state, track) {
       state.playlist.push({ ...track })
@@ -46,7 +46,7 @@ export default new Vuex.Store({
       http
         .get('/tracks/next')
         .then(result => {
-          console.log('sent nextMeme')
+          // console.log('sent nextMeme')
         })
         .catch(e => {
           console.log('error while sending nextMeme ', e)
