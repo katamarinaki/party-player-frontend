@@ -11,7 +11,9 @@
     </p>
     <p class="users">👥 {{ currentRoom.users }}</p>
     <div class="action-right" @click="copyToClipBoot">
-      <p><img :src="shareIcon" /></p>
+      <p>
+        <img :src="shareIcon" />
+      </p>
     </div>
     <input type="text" style="display:none;" ref="hiddenInput" :value="link" />
   </div>
@@ -30,7 +32,6 @@ export default {
   computed: {
     ...mapGetters(['currentRoom']),
     link() {
-      console.log(window.location.href)
       return window.location.href
     },
   },
@@ -41,18 +42,12 @@ export default {
         copyText.focus()
         copyText.select()
         copyText.setSelectionRange(0, 99999) /*For mobile devices*/
-        console.log(document.execCommand('copy'))
 
         return
       }
-      navigator.clipboard.writeText(this.link).then(
-        function() {
-          console.log('Async: Copying to clipboard was successful!')
-        },
-        function(err) {
-          console.error('Async: Could not copy text: ', err)
-        }
-      )
+      navigator.clipboard.writeText(this.link).then(function(err) {
+        console.error('Async: Could not copy text: ', err)
+      })
     },
   },
   props: {

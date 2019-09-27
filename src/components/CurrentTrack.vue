@@ -27,7 +27,6 @@ export default {
       else
         this.$http
           .post('/tracks/voteforskip')
-          .then(result => console.log(result))
           .catch(e => console.log('error voting for skip', e))
     },
   },
