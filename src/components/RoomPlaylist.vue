@@ -24,12 +24,12 @@
         </template>
         <template v-slot:left="{ index }">
           <div class="dislike">
-            <div>👎</div>
+            <img :src="thumb" />
           </div>
         </template>
         <template v-slot:right="{ index }">
           <div class="like">
-            <div>👍</div>
+            <img :src="thumb" />
           </div>
         </template>
       </swipe-list>
@@ -42,14 +42,21 @@
 import { SwipeList } from 'vue-swipe-actions'
 import 'vue-swipe-actions/dist/vue-swipe-actions.css'
 import TrackInRoom from '@/components/TrackInRoom'
+import CurrentTrack from '@/components/CurrentTrack'
+import thumb from '@/assets/whiteThumb.svg'
+
 import { mapGetters } from 'vuex'
-import CurrentTrack from './CurrentTrack'
 
 export default {
   components: {
     CurrentTrack,
     SwipeList,
     TrackInRoom,
+  },
+  data() {
+    return {
+      thumb,
+    }
   },
   methods: {
     swipeLeft(index) {
@@ -158,10 +165,15 @@ export default {
   background-color: #00c6ba;
 }
 
+.dislike>img{
+  transform: rotate(-180deg);
+}
+
 .like,
 .dislike {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   color: white;
   font-size: 24px;
