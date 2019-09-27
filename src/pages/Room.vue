@@ -1,15 +1,20 @@
 <template>
   <div class="room">
+    <Loading :active.sync="isLoading"  :is-full-page="false" :opacity="1.0" background-color='#000000' color="#ffffff" />
     <HeaderInRoom />
-    <RoomPlayer v-if="isAdmin" />
+    <RoomPlayer v-if="isAdmin" @ready="playerLoaded" />
     <div class="button-container">
       <router-link class="button" to="search" tag="button" append>
         Add Track
       </router-link>
     </div>
     <RoomPlaylist />
-    <button v-show="showOverlayButton" class="button overlay-button" @click="openOverlay">
-      Vote For Tracks({{unvotedTracks.length}})
+    <button
+      v-show="showOverlayButton"
+      class="button overlay-button"
+      @click="openOverlay"
+    >
+      Vote For Tracks({{ unvotedTracks.length }})
     </button>
     <Overlay v-bind:showOverlay.sync="overlayOpened" />
   </div>
@@ -20,6 +25,9 @@ import HeaderInRoom from '@/components/HeaderInRoom'
 import RoomPlayer from '@/components/RoomPlayer'
 import RoomPlaylist from '@/components/RoomPlaylist'
 import Overlay from '@/components/Overlay'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
+
 import { mapGetters } from 'vuex'
 export default {
   components: {
@@ -27,6 +35,7 @@ export default {
     RoomPlayer,
     RoomPlaylist,
     Overlay,
+    Loading,
   },
   created() {
     if (this.code && this.code === this.$route.params.code) {
@@ -66,9 +75,14 @@ export default {
   data() {
     return {
       overlayOpened: false,
+      isLoading: true,
     }
   },
+
   methods: {
+    playerLoaded() {
+      this.isLoading = false
+    },
     openOverlay() {
       this.overlayOpened = true
     },
@@ -91,6 +105,12 @@ export default {
 </script>
 
 <style scoped>
+.room {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
 .button-container {
   margin: 20px 7%;
   display: flex;

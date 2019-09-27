@@ -59,6 +59,7 @@ export default {
     // callback for when player is ready, we set up watchers for updated state
     playerReady() {
       this.isPlayerReady = true
+      this.$emit('ready')
       //this.$watch("nextVideo",this.nextVideoChanged,{immediate:true})
       this.$watch('currentPlayingTrack', this.currentTrackChanged, {
         immediate: true,
