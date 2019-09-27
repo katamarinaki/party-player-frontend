@@ -8,10 +8,10 @@
       </router-link>
     </div>
     <RoomPlaylist />
-    <button class="button overlay-button" @click="openOverlay">
-      Vote For Tracks
+    <button v-show="showOverlayButton" class="button overlay-button" @click="openOverlay">
+      Vote For Tracks({{unvotedTracks.length}})
     </button>
-    <Overlay v-bind:show.sync="overlayOpened" />
+    <Overlay v-bind:showOverlay.sync="overlayOpened" />
   </div>
 </template>
 
@@ -54,9 +54,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['currentRoom', 'isAdmin']),
+    ...mapGetters(['currentRoom', 'isAdmin', 'unvotedTracks']),
     code() {
       return localStorage.getItem('roomcode')
+    },
+
+    showOverlayButton() {
+      return this.unvotedTracks.length > 0
     },
   },
   data() {

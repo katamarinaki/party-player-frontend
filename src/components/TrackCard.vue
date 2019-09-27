@@ -1,19 +1,21 @@
 <template>
   <div class="track-card">
-    <div class="track-cover">
+    <div v-if="track != null" class="track-cover">
       <img :src="track.thumbnailSrc" />
     </div>
     <div class="track-content">
-      <p class="track-title">{{ track.title }}</p>
-      <p class="track-channelname">{{ track.channelTitle }}</p>
-      <div class="button-block">
-        <div class="vote-button">
+      <p v-if="track != null" class="track-title">{{ track.title }}</p>
+      <p v-if="track != null" class="track-channelname">
+        {{ track.channelTitle }}
+      </p>
+      <div v-if="track != null" class="button-block">
+        <div class="vote-button" @click="dislike">
           <p class="dislike">👎</p>
           <p class="vote-text big">No</p>
           <p class="vote-text">Swipe to left</p>
         </div>
         <div class="divider"></div>
-        <div class="vote-button">
+        <div class="vote-button" @click="like">
           <p class="like">👍</p>
           <p class="vote-text big">Yes</p>
           <p class="vote-text">Swipe to right</p>
@@ -43,9 +45,43 @@ export default {
       },
     },
   },
+
+  watch: {
+    track: {
+      handler: function(newVal) {
+        if (!newVal) this.hideOverlay()
+      },
+      immediate: true,
+    },
+  },
   methods: {
     hideOverlay() {
       this.$emit('hide')
+    },
+
+    dislike() {
+      if (!this.track) return
+      const trackUUID = this.track.uuid
+      this.$http
+        .post('/tracks/dislike', { trackUUID })
+        .then(() => {
+          console.log('disliked ', trackUUID)
+        })
+        .catch(e => {
+          console.log('error while disliking track:', trackUUID, e)
+        })
+    },
+    like() {
+      if (!this.track) return
+      const trackUUID = this.track.uuid
+      this.$http
+        .post('/tracks/like', { trackUUID })
+        .then(() => {
+          console.log('liked ', trackUUID)
+        })
+        .catch(e => {
+          console.log('error while liking track:', trackUUID, e)
+        })
     },
   },
 }

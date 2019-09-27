@@ -1,28 +1,29 @@
 <template>
-  <div v-if="show" class="overlay">
-    <TrackCard v-if="show" @hide="hideOverlay" :track="currentUnvotedTrack" />
+  <div v-if="showOverlay" class="overlay">
+    <TrackCard @hide="hideOverlay" :track="currentUnvotedTrack" />
   </div>
 </template>
 
 <script>
 import TrackCard from '@/components/TrackCard'
 export default {
-  props: ['show'],
+  props: ['showOverlay'],
   components: {
     TrackCard,
   },
   methods: {
     hideOverlay() {
-      this.$emit('update:show', false)
+      this.$emit('update:showOverlay', false)
     },
   },
   data() {
     return {}
   },
+  watch: {},
   computed: {
     currentUnvotedTrack() {
       let all = this.$store.getters.unvotedTracks
-      let track = all.length > 0 ? all[0] : {}
+      let track = all.length > 0 ? all[0] : null
       return track
     },
   },
