@@ -8,11 +8,11 @@
       <p class="track-channel">{{ track.channelTitle }}</p>
       <p class="track-metrics">
         <span class="dislikes">
-          <span class="icon">👎</span>
+          <img class="thumb-icon" :src="thumbDown" />
           {{ track.dislikes }}
         </span>
         <span class="likes">
-          <span class="icon">👍</span>
+          <img class="thumb-icon" :src="thumbUp" />
           {{ track.likes }}
         </span>
       </p>
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import thumbDown from '@/assets/thumbDown.svg'
+import thumbUp from '@/assets/thumbUp.svg'
 export default {
   props: {
     track: {
@@ -37,6 +39,12 @@ export default {
         }
       },
     },
+  },
+  data() {
+    return {
+      thumbUp,
+      thumbDown,
+    }
   },
 }
 </script>
@@ -59,6 +67,8 @@ export default {
 .track-image > img {
   width: 100%;
   height: 100%;
+  height: 100%;
+  width: auto;
 }
 .track-text {
   padding: 10px;
@@ -100,5 +110,9 @@ p.track-channel {
 .dislikes > .icon {
   color: #4d1414;
   opacity: 1;
+}
+
+.thumb-icon{
+
 }
 </style>
