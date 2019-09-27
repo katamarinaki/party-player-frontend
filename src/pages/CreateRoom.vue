@@ -1,7 +1,7 @@
 <template>
   <div class="create-room">
     <RoomHeader :title="'PARTY PLAYER'" :backActionNeeded="true" />
-    <p class="title">Create a room</p>
+    <p class="title">CREATE A ROOM</p>
     <form class="create-form" @submit.prevent="createRoom">
       <input
         class="text-input"
@@ -71,15 +71,16 @@ export default {
 
 <style scoped>
 .title {
-  font-size: 32px;
-  margin: 50px 0 0 0;
-  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 30% 0 0 7%;
+  text-align: left;
 }
 .create-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px 5%;
+  margin: 40px 7%;
 }
 .create-form > input {
   width: 100%;

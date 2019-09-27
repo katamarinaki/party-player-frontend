@@ -4,6 +4,7 @@
       Search your favorite track on YouTube!
     </div>
     <div class="results" v-else>
+      <p class="results-text">Results</p>
       <TrackResult
         v-for="(result, index) in results"
         :key="index"
@@ -52,9 +53,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px 5%;
+  margin: 20px 7%;
 }
 .track {
-  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.results-text {
+  width: 100%;
+  margin: 0 0 10px 0;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="current-track">
-    <p>Now playing</p>
+    <p class="current-title">Now playing</p>
     <TrackInRoom :track="currentPlayingTrack" />
     <div class="button-container">
       <input
@@ -52,10 +52,16 @@ export default {
 
 <style scoped>
 .current-track {
-  margin: 0 5%;
+  margin: 0 7%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.track-container {
+  margin: 0;
+}
+.current-title {
+  width: 100%;
 }
 .button-container {
   width: 100%;
@@ -65,5 +71,7 @@ export default {
 }
 .button {
   margin-top: 5px;
+  background: none;
+  border: 1px solid #242333;
 }
 </style>

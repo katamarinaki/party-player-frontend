@@ -1,7 +1,7 @@
 <template>
   <div class="join-room">
     <RoomHeader :title="'PARTY PLAYER'" :backActionNeeded="true" />
-    <p class="title">Connect to room</p>
+    <p class="title">CONNECT TO ROOM</p>
     <form class="join-form" @submit.prevent="joinRoom">
       <input
         class="text-input"
@@ -70,15 +70,16 @@ export default {
 
 <style scoped>
 .title {
-  font-size: 32px;
-  margin: 50px 0 0 0;
-  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 30% 0 0 7%;
+  text-align: left;
 }
 .join-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px 5%;
+  margin: 40px 7%;
 }
 .join-form > input {
   width: 100%;

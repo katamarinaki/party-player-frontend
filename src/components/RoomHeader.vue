@@ -1,8 +1,10 @@
 <template>
   <div class="header">
-    <div v-if="backActionNeeded" class="action-left" @click="$router.back(-1)">
-      <p>&lt;</p>
-    </div>
+    <div
+      v-if="backActionNeeded"
+      class="action-left"
+      @click="$router.back(-1)"
+    ></div>
     <p class="title">{{ title }}</p>
   </div>
 </template>
@@ -24,24 +26,24 @@ export default {
   position: relative;
   height: 80px;
   padding: 24px 0;
-  border-bottom: 2px solid black;
 }
 .title {
   margin: 0;
   font-size: 24px;
   text-align: center;
+  font-weight: bold;
 }
 .action-left {
+  border-top: 4px solid white;
+  border-left: 4px solid white;
   padding-left: 10px;
   cursor: pointer;
-  height: 100%;
-  width: 80px;
+  height: 14px;
+  width: 14px;
+  transform: rotate(-45deg);
   font-size: 48px;
   position: absolute;
-  left: 0;
-  top: 0;
-}
-.action-left > p {
-  margin: 12px 0;
+  left: 25px;
+  top: 30px;
 }
 </style>

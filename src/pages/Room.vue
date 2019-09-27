@@ -7,7 +7,6 @@
         Add Track
       </router-link>
     </div>
-
     <RoomPlaylist />
     <button class="button overlay-button" @click="openOverlay">
       Vote For Tracks
@@ -89,7 +88,7 @@ export default {
 
 <style scoped>
 .button-container {
-  margin: 20px 5%;
+  margin: 20px 7%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,6 +98,7 @@ export default {
 }
 
 .overlay-button {
+  z-index: 50;
   position: fixed;
   left: -1px;
   bottom: 15px;

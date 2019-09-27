@@ -17,31 +17,39 @@ export default {
 body {
   width: 100%;
   margin: 0;
+  background-color: #04070d;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
   height: 100%;
+  color: #ffffff;
 }
-.button,
 .text-input {
+  color: #ffffff;
+  background: none;
   border: none;
+  border-bottom: 1px solid #878787;
   outline: none;
-  border-radius: 4px;
   font-size: 16px;
   height: 50px;
-  padding: 0 15px;
   width: 100%;
   max-width: 350px;
 }
+.text-input::placeholder {
+  color: #878787;
+}
 .button {
   cursor: pointer;
-  background-color: #61a1ec;
-}
-.text-input {
-  color: black;
-  background-color: #d8d8d8;
+  background-color: #242333;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  font-size: 16px;
+  height: 50px;
+  width: 100%;
+  max-width: 350px;
 }
 </style>

@@ -7,8 +7,14 @@
       <p class="track-name">{{ track.title }}</p>
       <p class="track-channel">{{ track.channelTitle }}</p>
       <p class="track-metrics">
-        <span class="dislikes">👎 {{ track.dislikes }}</span>
-        <span class="likes">👍 {{ track.likes }}</span>
+        <span class="dislikes">
+          <span class="icon">👎</span>
+          {{ track.dislikes }}
+        </span>
+        <span class="likes">
+          <span class="icon">👍</span>
+          {{ track.likes }}
+        </span>
       </p>
     </div>
   </div>
@@ -39,7 +45,7 @@ export default {
 .track-container {
   overflow: hidden;
   border-radius: 5px;
-  background-color: lightgray;
+  background-color: #0c0e13;
   width: 100%;
   max-width: 350px;
   height: 80px;
@@ -55,15 +61,16 @@ export default {
   height: 100%;
 }
 .track-text {
-  padding: 5px;
+  padding: 10px;
   vertical-align: top;
   display: inline-block;
   width: 65%;
   height: 100%;
 }
 p {
+  color: #ffffff;
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   text-overflow: ellipsis;
   overflow: hidden;
   line-height: 1.5em;
@@ -71,7 +78,7 @@ p {
 }
 p.track-channel {
   margin-top: 5px;
-  color: gray;
+  opacity: 0.6;
 }
 .add-button {
   display: inline-block;
@@ -80,10 +87,18 @@ p.track-channel {
   font-size: 36px;
 }
 .likes {
-  margin-left: 10px;
-  color: green;
+  margin-left: 25px;
+  opacity: 0.5;
 }
 .dislikes {
-  color: red;
+  opacity: 0.5;
+}
+.likes > .icon {
+  color: #00c6ba;
+  opacity: 1;
+}
+.dislikes > .icon {
+  color: #4d1414;
+  opacity: 1;
 }
 </style>
