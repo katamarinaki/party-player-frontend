@@ -7,7 +7,7 @@
     ></div>
     <p class="title">
       <span class="name">{{ currentRoom.name }}</span>
-      <!-- <span class="code">{{ currentRoom.code }}</span> -->
+      <span class="code">{{ currentRoom.code }}</span>
     </p>
     <p class="users">👥 {{ currentRoom.users }}</p>
     <div class="action-right" @click="copyToClipBoot">
