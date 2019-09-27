@@ -1,5 +1,5 @@
 <template>
-  <div class="track">
+  <div class="track" @click="$emit('addtrack', track)">
     <div class="track-image">
       <img :src="track.thumbnailSrc" alt="track" />
     </div>
@@ -7,12 +7,7 @@
       <p class="track-name">{{ track.title }}</p>
       <p class="track-channel">{{ track.channelTitle }}</p>
     </div>
-    <input
-      class="add-button"
-      type="button"
-      value="+"
-      @click="$emit('addtrack', track)"
-    />
+    <input class="add-button" type="button" value="+" />
   </div>
 </template>
 

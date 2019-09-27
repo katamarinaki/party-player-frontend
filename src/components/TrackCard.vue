@@ -10,13 +10,17 @@
       </p>
       <div v-if="track != null" class="button-block">
         <div class="vote-button" @click="dislike">
-          <p class="dislike"><img class="thumb-img" :src="thumbDown"></p>
+          <p class="dislike">
+            <img class="thumb-img" :src="thumbDown" />
+          </p>
           <p class="vote-text big">No</p>
           <p class="vote-text">Swipe to left</p>
         </div>
         <div class="divider"></div>
         <div class="vote-button" @click="like">
-          <p class="like"><img class="thumb-img" :src="thumbUp"></p>
+          <p class="like">
+            <img class="thumb-img" :src="thumbUp" />
+          </p>
           <p class="vote-text big">Yes</p>
           <p class="vote-text">Swipe to right</p>
         </div>
@@ -96,15 +100,13 @@ export default {
 </script>
 
 <style scoped>
-
-.thumb-img{
-  height:90%;
+.thumb-img {
+  height: 32px;
 }
 
-
 .track-card {
+  width: 80%;
   color: white;
-  margin: 20px;
   background-color: #0d0f19;
   border: 1px solid rgba(114, 114, 114, 0.1);
   box-sizing: border-box;
@@ -114,14 +116,13 @@ export default {
 }
 .track-content {
   padding: 15px 20px;
-  height: 70%;
 }
 p {
   font-size: 16px;
   margin: 0;
 }
 .track-cover {
-  display: inline-block;
+  width: 100%;
   height: 30%;
 }
 .track-cover > img {
@@ -135,7 +136,6 @@ p {
 .button-block {
   margin-top: 30px;
   display: flex;
-  height: 120px;
   justify-content: center;
 }
 .vote-button {
@@ -157,7 +157,7 @@ p {
   font-size: 32px;
 }
 .button-container {
-  margin: 25px 7%;
+  margin: 25px 25% 0 25%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -166,5 +166,9 @@ p {
   width: 2px;
   border: 1px solid #979797;
   opacity: 0.1;
+}
+.button {
+  background: none;
+  border: 1px solid #242333;
 }
 </style>

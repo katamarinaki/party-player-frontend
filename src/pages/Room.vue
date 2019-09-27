@@ -1,6 +1,12 @@
 <template>
-  <div class="room">
-    <Loading :active.sync="isLoading"  :is-full-page="false" :opacity="1.0" background-color='#000000' color="#ffffff" />
+  <div class="room" :class="{ noscroll: isLoading || overlayOpened }">
+    <Loading
+      :active.sync="isLoading"
+      :is-full-page="false"
+      :opacity="1.0"
+      background-color="#000000"
+      color="#ffffff"
+    />
     <HeaderInRoom />
     <RoomPlayer v-if="isAdmin" @ready="playerLoaded" />
     <div class="button-container">
@@ -109,6 +115,9 @@ export default {
   width: 100vw;
   height: 100vh;
   position: relative;
+}
+.noscroll {
+  overflow: hidden;
 }
 
 .button-container {
