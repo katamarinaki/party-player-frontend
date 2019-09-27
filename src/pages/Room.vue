@@ -12,7 +12,7 @@
     <button class="button overlay-button" @click="openOverlay">
       Vote For Tracks
     </button>
-    <Overlay :show.sync="overlayOpened" />
+    <Overlay v-bind:show.sync="overlayOpened" />
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
-  <div v-show="show" class="overlay">
-    <TrackCard @hide="hideOverlay" />
+  <div v-if="show" class="overlay">
+    <TrackCard v-if="show" @hide="hideOverlay" :track="currentUnvotedTrack" />
   </div>
 </template>
 
@@ -18,6 +18,13 @@ export default {
   },
   data() {
     return {}
+  },
+  computed: {
+    currentUnvotedTrack() {
+      let all = this.$store.getters.unvotedTracks
+      let track = all.length > 0 ? all[0] : {}
+      return track
+    },
   },
 }
 </script>
