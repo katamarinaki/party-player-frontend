@@ -10,13 +10,13 @@
       </p>
       <div v-if="track != null" class="button-block">
         <div class="vote-button" @click="dislike">
-          <p class="dislike">👎</p>
+          <p class="dislike"><img class="thumb-img" :src="thumbDown"></p>
           <p class="vote-text big">No</p>
           <p class="vote-text">Swipe to left</p>
         </div>
         <div class="divider"></div>
         <div class="vote-button" @click="like">
-          <p class="like">👍</p>
+          <p class="like"><img class="thumb-img" :src="thumbUp"></p>
           <p class="vote-text big">Yes</p>
           <p class="vote-text">Swipe to right</p>
         </div>
@@ -29,6 +29,9 @@
 </template>
 
 <script>
+import thumbDown from '@/assets/thumbDown.svg'
+import thumbUp from '@/assets/thumbUp.svg'
+
 export default {
   props: {
     track: {
@@ -45,7 +48,12 @@ export default {
       },
     },
   },
-
+  data() {
+    return {
+      thumbDown,
+      thumbUp,
+    }
+  },
   watch: {
     track: {
       handler: function(newVal) {
@@ -88,6 +96,12 @@ export default {
 </script>
 
 <style scoped>
+
+.thumb-img{
+  height:90%;
+}
+
+
 .track-card {
   color: white;
   margin: 20px;
