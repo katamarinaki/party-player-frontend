@@ -6,6 +6,7 @@
 
 <script>
 import TrackCard from '@/components/TrackCard'
+
 export default {
   props: ['showOverlay'],
   components: {
