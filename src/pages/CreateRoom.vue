@@ -2,8 +2,8 @@
   <div class="create-room">
     <RoomHeader :title="'PARTY PLAYER'" :backActionNeeded="true" />
     <p class="title">CREATE A ROOM</p>
-    <form class="create-form" @submit.prevent="createRoom">
-      <input
+    <form autocomplete="off"  class="create-form" @submit.prevent="createRoom">
+      <input autocomplete="false"
         class="text-input"
         type="text"
         name="room-name"
@@ -11,7 +11,7 @@
         placeholder="Name (optional)"
         v-model="roomName"
       />
-      <input
+      <input autocomplete="false"
         class="text-input password"
         type="password"
         name="room-password"

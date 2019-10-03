@@ -2,8 +2,8 @@
   <div class="join-room">
     <RoomHeader :title="'PARTY PLAYER'" :backActionNeeded="true" />
     <p class="title">CONNECT TO ROOM</p>
-    <form class="join-form" @submit.prevent="joinRoom">
-      <input
+    <form autocomplete="off" class="join-form" @submit.prevent="joinRoom">
+      <input autocomplete="false"
         class="text-input"
         type="text"
         name="room-code"
@@ -11,7 +11,7 @@
         placeholder="Code"
         v-model="roomCode"
       />
-      <input
+      <input autocomplete="false"
         class="text-input password"
         type="password"
         name="room-password"
