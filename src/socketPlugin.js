@@ -1,7 +1,9 @@
 import ioBase from 'socket.io-client'
 
 export default store => {
-  let socket = ioBase.connect(process.env.VUE_APP_SERVER, { path: '/api' })
+  let socket = ioBase.connect(process.env.VUE_APP_SERVER, {
+    path: '/api/socket.io',
+  })
   socket.on('connect', () => {
     console.log('Socket connected')
   })
