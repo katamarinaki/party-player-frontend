@@ -24,7 +24,7 @@ export default {
       playerVars: {
         autoplay: 1,
         controls: 1,
-        origin: 'http://localhost:8080',
+        origin: process.env.VUE_APP_SERVER,
         host: 'http://www.youtube.com',
       },
       videoID: '',
