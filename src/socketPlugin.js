@@ -9,7 +9,7 @@ export default store => {
   })
 
   socket.on('playlistchanged', playlist => {
-    console.log(playlist)
+    console.log('New playlist from sockets')
     store.commit('setPlaylist', playlist)
   })
 

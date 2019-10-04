@@ -50,7 +50,6 @@ export default new Vuex.Store({
       state.playlist = newPlaylist.map(item => {
         return { ...item }
       })
-      // console.log('New playlist', state.playlist)
     },
     pushToPlaylist(state, track) {
       state.playlist.push({ ...track })
