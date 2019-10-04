@@ -30,8 +30,9 @@ export default new Vuex.Store({
       })
     },
 
-    voteTack(state, uuid, vote) {
-      state.playlist.find(t => t.uuid == uuid).voted = vote
+    voteTrack(state, pay) {
+      console.log('dd')
+      state.playlist.find(t => t.uuid == pay.uuid).voted = pay.vote
     },
 
     setPlaylist(state, newPlaylist) {

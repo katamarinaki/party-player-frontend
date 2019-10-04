@@ -70,14 +70,14 @@ export default {
     },
     dislike(index) {
       const trackUUID = this.currentPlaylist[index].uuid
-      this.$store.commit('voteTrack', -1)
+      this.$store.commit('voteTrack', { uuid: trackUUID, vote: -1 })
       this.$http.post('/tracks/dislike', { trackUUID }).catch(e => {
         console.log('error while disliking track:', trackUUID, e)
       })
     },
     like(index) {
       const trackUUID = this.currentPlaylist[index].uuid
-      this.$store.commit('voteTrack', -1)
+      this.$store.commit('voteTrack', { uuid: trackUUID, vote: 1 })
       this.$http.post('/tracks/like', { trackUUID }).catch(e => {
         console.log('error while liking track:', trackUUID, e)
       })

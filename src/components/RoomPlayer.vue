@@ -32,7 +32,9 @@ export default {
     }
   },
   watch: {},
-  mounted() {},
+  mounted() {
+    if (this.$ref.youtube) this.$emit('ready')
+  },
 
   methods: {
     playerEnded() {
