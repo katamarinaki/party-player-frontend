@@ -51,25 +51,34 @@ export default {
   methods: {
     joinRoom() {
       this.isButtonDisabled = true
-      this.$http
-        .post(`/rooms/join`, {
-          code: this.roomCode,
-          password: this.roomPassword,
-        })
-        .then(result => {
-          this.isButtonDisabled = false
-          localStorage.setItem(result.data.roomCode, 'false')
-          localStorage.setItem('authtoken', result.data.accessToken)
-          localStorage.setItem('roomcode', result.data.roomCode)
-          this.$http.defaults.headers[
-            'Authorization'
-          ] = `Bearer ${result.data.accessToken}`
-          this.$router.push(`/rooms/${result.data.roomCode}`)
-        })
-        .catch(e => {
-          this.isButtonDisabled = false
-          console.log('Error occured while trying connect to room', e)
-        })
+      if (
+        this.roomCode == localStorage.getItem('roomcode') &&
+        this.roomPassword == localStorage.getItem('roompass') &&
+        localStorage.getItem('authtoken')
+      ) {
+        console.log('rejoining authorized room')
+        this.$router.push(`/rooms/${this.roomCode}`)
+        return
+      } else
+        this.$http
+          .post(`/rooms/join`, {
+            code: this.roomCode,
+            password: this.roomPassword,
+          })
+          .then(result => {
+            this.isButtonDisabled = false
+            localStorage.setItem(result.data.roomCode, 'false')
+            localStorage.setItem('authtoken', result.data.accessToken)
+            localStorage.setItem('roomcode', result.data.roomCode)
+            this.$http.defaults.headers[
+              'Authorization'
+            ] = `Bearer ${result.data.accessToken}`
+            this.$router.push(`/rooms/${result.data.roomCode}`)
+          })
+          .catch(e => {
+            this.isButtonDisabled = false
+            console.log('Error occured while trying connect to room', e)
+          })
     },
   },
 }
