@@ -33,7 +33,7 @@ export default {
   },
   watch: {},
   mounted() {
-    if (this.$ref.youtube) this.$emit('ready')
+    if (this.$refs.youtube) this.$emit('ready')
   },
 
   methods: {
