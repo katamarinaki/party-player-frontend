@@ -82,7 +82,7 @@ export default {
   data() {
     return {
       overlayOpened: false,
-      isLoading: true,
+      isLoading: this.isAdmin ? true : false,
     }
   },
 
