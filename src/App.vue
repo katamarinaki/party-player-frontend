@@ -11,30 +11,45 @@ export default {
 </script>
 
 <style>
-html,
-body {
-  height: 100%;
+* {
+  box-sizing: border-box;
 }
 body {
+  width: 100%;
   margin: 0;
+  background-color: #04070d;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
   height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  color: #ffffff;
 }
-
+.text-input {
+  color: #ffffff;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #878787;
+  outline: none;
+  font-size: 16px;
+  height: 50px;
+  width: 100%;
+  max-width: 350px;
+}
+.text-input::placeholder {
+  color: #878787;
+}
 .button {
   cursor: pointer;
-  margin-bottom: 25px;
-  width: 200px;
+  background-color: #242333;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  font-size: 16px;
   height: 50px;
+  width: 100%;
+  max-width: 350px;
 }
 </style>
