@@ -6,7 +6,7 @@
     <div class="results" v-else>
       <p class="results-text">Results</p>
       <TrackResult
-        v-for="(result, index) in results"
+        v-for="(result, index) in filteredResults"
         :key="index"
         :track="result"
         @addtrack="addToList"
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import TrackResult from '@/components/TrackResult'
 export default {
   components: {
@@ -40,6 +41,16 @@ export default {
           console.log(err)
         })
       //this.$store.commit('pushToPlaylist', track)
+    },
+    ...mapGetters(['currentPlaylist', 'currentPlayingTrack']),
+  },
+  computed: {
+    filteredResults() {
+      return this.result.filter(
+        t =>
+          t.id != this.currentPlayingTrack.id &&
+          !this.currentPlaylist.find(t1 => t1.id == t.id)
+      )
     },
   },
 }
