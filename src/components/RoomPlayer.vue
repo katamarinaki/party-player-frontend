@@ -25,6 +25,7 @@ export default {
         autoplay: 1,
         controls: 1,
         origin: process.env.VUE_APP_SERVER,
+        host: 'https://www.youtube.com',
       },
       videoID: '',
       isPlayerReady: false,

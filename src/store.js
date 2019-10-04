@@ -30,6 +30,10 @@ export default new Vuex.Store({
       })
     },
 
+    voteTack(state, uuid, vote) {
+      state.playlist.find(t => t.uuid == uuid).voted = vote
+    },
+
     setPlaylist(state, newPlaylist) {
       state.playlist = newPlaylist.map(item => {
         return { ...item }
@@ -43,14 +47,9 @@ export default new Vuex.Store({
       //if (state.playlist.length) state.playlist.shift()
       state.room.voteskips = 0
 
-      http
-        .get('/tracks/next')
-        .then(result => {
-          // console.log('sent nextMeme')
-        })
-        .catch(e => {
-          console.log('error while sending nextMeme ', e)
-        })
+      http.get('/tracks/next').catch(e => {
+        console.log('error while sending nextMeme ', e)
+      })
     },
 
     setVotesToSkip(state, votes) {
