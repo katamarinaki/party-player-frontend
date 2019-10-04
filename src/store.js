@@ -30,15 +30,26 @@ export default new Vuex.Store({
       })
     },
 
-    voteTack(state, uuid, vote) {
-      state.playlist.find(t => t.uuid == uuid).voted = vote
+    voteTrack(state, pay) {
+      const track = state.playlist.find(t => t.uuid == pay.uuid)
+      if (track.voted != pay.vote) {
+        if (track.voted == -1) {
+          track.dislikes -= 1
+          track.likes += 1
+        } else if (track.voted == 1) {
+          track.dislikes += 1
+          track.likes -= 1
+        } else {
+          pay.vote == 1 ? (track.likes += 1) : (track.dislikes -= 1)
+        }
+        track.voted = pay.vote
+      }
     },
 
     setPlaylist(state, newPlaylist) {
       state.playlist = newPlaylist.map(item => {
         return { ...item }
       })
-      // console.log('New playlist', state.playlist)
     },
     pushToPlaylist(state, track) {
       state.playlist.push({ ...track })

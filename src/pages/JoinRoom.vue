@@ -3,7 +3,8 @@
     <RoomHeader :title="'PARTY PLAYER'" :backActionNeeded="true" />
     <p class="title">CONNECT TO ROOM</p>
     <form autocomplete="off" class="join-form" @submit.prevent="joinRoom">
-      <input autocomplete="false"
+      <input
+        autocomplete="false"
         class="text-input"
         type="text"
         name="room-code"
@@ -11,7 +12,8 @@
         placeholder="Code"
         v-model="roomCode"
       />
-      <input autocomplete="false"
+      <input
+        autocomplete="false"
         class="text-input password"
         type="password"
         name="room-password"
@@ -37,8 +39,12 @@ export default {
   },
   data() {
     return {
-      roomCode: '',
-      roomPassword: '',
+      roomCode: localStorage.getItem('roomcode')
+        ? localStorage.getItem('roomcode')
+        : '',
+      roomPassword: localStorage.getItem('roompass')
+        ? localStorage.getItem('roompass')
+        : '',
       isButtonDisabled: false,
     }
   },

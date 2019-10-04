@@ -74,26 +74,18 @@ export default {
     dislike() {
       if (!this.track) return
       const trackUUID = this.track.uuid
-      this.$http
-        .post('/tracks/dislike', { trackUUID })
-        .then(() => {
-          console.log('disliked')
-        })
-        .catch(e => {
-          console.log('error while disliking track:', trackUUID, e)
-        })
+      this.$store.commit('voteTrack', { uuid: trackUUID, vote: -1 })
+      this.$http.post('/tracks/dislike', { trackUUID }).catch(e => {
+        console.log('error while disliking track:', trackUUID, e)
+      })
     },
     like() {
       if (!this.track) return
       const trackUUID = this.track.uuid
-      this.$http
-        .post('/tracks/like', { trackUUID })
-        .then(() => {
-          console.log('liked')
-        })
-        .catch(e => {
-          console.log('error while liking track:', trackUUID, e)
-        })
+      this.$store.commit('voteTrack', { uuid: trackUUID, vote: 1 })
+      this.$http.post('/tracks/like', { trackUUID }).catch(e => {
+        console.log('error while liking track:', trackUUID, e)
+      })
     },
   },
 }

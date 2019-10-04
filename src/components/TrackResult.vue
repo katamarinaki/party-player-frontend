@@ -84,4 +84,8 @@ p.track-channel {
   width: 10%;
   font-size: 36px;
 }
+.add-button:active{
+  background: #242A33;
+}
+
 </style>
