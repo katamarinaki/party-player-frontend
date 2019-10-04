@@ -49,6 +49,7 @@ export default {
         this.getRoomFromServer()
       }
     } else {
+      localStorage.setItem('roomcode', this.$route.params.code)
       this.$http
         .post('/rooms/join', {
           code: this.$route.params.code,

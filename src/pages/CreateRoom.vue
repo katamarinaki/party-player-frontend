@@ -2,8 +2,9 @@
   <div class="create-room">
     <RoomHeader :title="'PARTY PLAYER'" :backActionNeeded="true" />
     <p class="title">CREATE A ROOM</p>
-    <form autocomplete="off"  class="create-form" @submit.prevent="createRoom">
-      <input autocomplete="false"
+    <form autocomplete="off" class="create-form" @submit.prevent="createRoom">
+      <input
+        autocomplete="false"
         class="text-input"
         type="text"
         name="room-name"
@@ -11,7 +12,8 @@
         placeholder="Name (optional)"
         v-model="roomName"
       />
-      <input autocomplete="false"
+      <input
+        autocomplete="false"
         class="text-input password"
         type="password"
         name="room-password"
@@ -55,6 +57,7 @@ export default {
           localStorage.setItem(result.data.roomCode, 'true')
           localStorage.setItem('authtoken', result.data.accessToken)
           localStorage.setItem('roomcode', result.data.roomCode)
+          localStorage.setItem('roompass', this.roomPassword)
           this.$http.defaults.headers[
             'Authorization'
           ] = `Bearer ${result.data.accessToken}`
