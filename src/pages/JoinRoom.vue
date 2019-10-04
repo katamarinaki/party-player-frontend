@@ -58,6 +58,7 @@ export default {
         })
         .then(result => {
           this.isButtonDisabled = false
+          localStorage.setItem(result.data.roomCode, 'false')
           localStorage.setItem('authtoken', result.data.accessToken)
           localStorage.setItem('roomcode', result.data.roomCode)
           this.$http.defaults.headers[
