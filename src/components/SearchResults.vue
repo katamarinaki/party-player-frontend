@@ -42,15 +42,16 @@ export default {
         })
       //this.$store.commit('pushToPlaylist', track)
     },
-    ...mapGetters(['currentPlaylist', 'currentPlayingTrack']),
   },
   computed: {
+    ...mapGetters(['currentPlaylist', 'currentPlayingTrack']),
     filteredResults() {
-      return this.result.filter(
+      var filtered = this.results.filter(
         t =>
-          t.id != this.currentPlayingTrack.id &&
+          this.currentPlayingTrack.id != t.id &&
           !this.currentPlaylist.find(t1 => t1.id == t.id)
       )
+      return filtered
     },
   },
 }

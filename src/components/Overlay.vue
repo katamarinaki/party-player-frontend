@@ -1,12 +1,12 @@
 <template>
   <div v-if="showOverlay" class="overlay">
-    <TrackCard @hide="hideOverlay" :track="currentUnvotedTrack" />
+    <TrackCard @hide="hideOverlay" :track="track" />
   </div>
 </template>
 
 <script>
 import TrackCard from '@/components/TrackCard'
-
+import { mapGetters } from 'vuex'
 export default {
   props: ['showOverlay'],
   components: {
@@ -18,15 +18,25 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      track: null,
+    }
   },
-  watch: {},
-  computed: {
-    currentUnvotedTrack() {
-      let all = this.$store.getters.unvotedTracks
-      let track = all.length > 0 ? all[0] : null
-      return track
+  watch: {
+    unvotedTracks: {
+      handler(newTracks) {
+        if (this.track) {
+          var updCur = newTracks.find(t => this.track.uuid == t.uuid)
+          if (updCur) this.track = updCur
+          else this.track = newTracks.length > 0 ? newTracks[0] : null
+        }
+        this.track = newTracks.length > 0 ? newTracks[0] : null
+      },
+      immediate: true,
     },
+  },
+  computed: {
+    ...mapGetters(['unvotedTracks']),
   },
 }
 </script>
