@@ -17,7 +17,7 @@ export default store => {
     store.commit('setVotesToSkip', voteSkip)
   })
 
-  socket.on('newuser', newuser => {
+  socket.on('usercount', newuser => {
     store.commit('setUsersCount', newuser)
   })
   store.subscribe((mutation, state) => {
